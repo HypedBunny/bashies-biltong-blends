@@ -84,19 +84,6 @@ const Products = () => {
                       {product.description}
                     </p>
                   </div>
-
-                  <div className="flex items-center justify-between pt-2">
-                    <span className="text-2xl font-raleway font-bold text-primary">
-                      {product.price}
-                    </span>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="font-raleway font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
-                    >
-                      View Product
-                    </Button>
-                  </div>
                 </div>
               </CardContent>
             </Card>
