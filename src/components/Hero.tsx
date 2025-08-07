@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -39,8 +40,8 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-muted-foreground rounded-full mt-2"></div>
+        <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+          <ChevronDown className="w-6 h-6 text-primary-foreground" />
         </div>
       </div>
     </section>
