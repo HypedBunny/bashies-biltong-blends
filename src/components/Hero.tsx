@@ -16,7 +16,7 @@ const Hero = () => {
           <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-anton text-primary tracking-wide leading-tight">
             BASHIES
             <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mt-2 text-foreground">
-              BEEF & BILTONG
+              DELI & BILTONG
             </span>
           </h1>
 

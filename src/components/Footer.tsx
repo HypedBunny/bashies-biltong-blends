@@ -30,7 +30,7 @@ const Footer = () => {
               BASHIES
             </h2>
             <p className="mt-2 font-raleway text-primary-foreground/80">
-              Beef & Biltong
+              Deli & Biltong
             </p>
           </div>
 
@@ -87,7 +87,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="pt-8 border-t border-primary-foreground/20">
             <p className="text-sm font-raleway text-primary-foreground/60">
-              © {new Date().getFullYear()} Bashies Beef & Biltong. All rights reserved.
+              © {new Date().getFullYear()} Bashies Deli & Biltong. All rights reserved.
             </p>
           </div>
         </div>
