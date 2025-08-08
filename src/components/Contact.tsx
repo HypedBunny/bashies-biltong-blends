@@ -88,13 +88,17 @@ const Contact = () => {
             {/* Map Placeholder */}
             <Card className="border-border">
               <CardContent className="p-0">
-                <div className="aspect-video bg-muted rounded-lg overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center">
-                    <p className="text-muted-foreground font-raleway text-center px-6">
-                      Google Maps Integration<br />
-                      <span className="text-sm">Interactive map showing store location</span>
-                    </p>
-                  </div>
+                <div className="aspect-video rounded-lg overflow-hidden">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.00739615189!2d18.464363900000002!3d-34.0180211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4321ee3319dd%3A0xe73ebfc0cc42daf1!2sBashies%20Biltong!5e0!3m2!1sen!2sza!4v1754668721671!5m2!1sen!2sza" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border: 0}} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Bashies Biltong Location"
+                  />
                 </div>
               </CardContent>
             </Card>
