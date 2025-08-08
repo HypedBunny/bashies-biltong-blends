@@ -30,8 +30,8 @@ const Contact = () => {
                   <div>
                     <h3 className="font-raleway font-semibold text-primary mb-2">Location</h3>
                     <p className="text-muted-foreground text-sm">
-                      123 Deli Street<br />
-                      Cape Town, 8001<br />
+                      Gabriel Road, Wicklow Rd<br />
+                      Plumstead, Cape Town, 7800<br />
                       South Africa
                     </p>
                   </div>
@@ -46,7 +46,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-raleway font-semibold text-primary mb-2">Phone</h3>
                     <p className="text-muted-foreground text-sm">
-                      +27 21 123 4567<br />
+                      +27 66 120 9331<br />
                       WhatsApp Available
                     </p>
                   </div>
@@ -77,8 +77,8 @@ const Contact = () => {
                     <h3 className="font-raleway font-semibold text-primary mb-2">Hours</h3>
                     <p className="text-muted-foreground text-sm">
                       Mon-Fri: 9:00-18:00<br />
-                      Sat: 9:00-16:00<br />
-                      Sun: 10:00-15:00
+                      Sat: 9:00-17:00<br />
+                      Sun: 9:00-14:00
                     </p>
                   </div>
                 </CardContent>
