@@ -48,20 +48,20 @@ const Products = () => {
   ];
 
   return (
-    <section id="shop" className="py-20 lg:py-32 bg-muted/20">
+    <section id="shop" className="py-16 sm:py-20 lg:py-32 bg-muted/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-anton text-primary mb-6 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-anton text-primary mb-4 sm:mb-6 tracking-wide">
             OUR PRODUCTS
           </h2>
-          <p className="text-lg lg:text-xl font-raleway text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl font-raleway text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Discover our carefully crafted selection of premium biltong and traditional South African delicacies
           </p>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10">
           {products.map((product) => (
             <Card key={product.id} className="group cursor-pointer border-border hover:shadow-lg transition-all duration-300 bg-card">
               <CardContent className="p-0">
@@ -75,12 +75,12 @@ const Products = () => {
                 </div>
 
                 {/* Product Info */}
-                <div className="p-6 space-y-4">
+                <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-xl font-raleway font-semibold text-primary mb-2">
+                    <h3 className="text-lg sm:text-xl font-raleway font-semibold text-primary mb-2">
                       {product.name}
                     </h3>
-                    <p className="text-muted-foreground font-raleway text-sm leading-relaxed">
+                    <p className="text-muted-foreground font-raleway text-xs sm:text-sm leading-relaxed">
                       {product.description}
                     </p>
                   </div>

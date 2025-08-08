@@ -11,25 +11,25 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-anton text-primary tracking-wide leading-tight">
+          <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-anton text-primary tracking-wide leading-tight">
             BASHIES
-            <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl mt-2 text-foreground">
+            <span className="block text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl mt-1 sm:mt-2 text-foreground">
               DELI & BILTONG
             </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl sm:text-2xl lg:text-3xl font-raleway text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-raleway text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed px-2">
             Authentic taste, refined experience
           </p>
 
           {/* CTA Button */}
-          <div className="pt-8">
+          <div className="pt-4 sm:pt-8">
             <Button 
               size="lg" 
-              className="px-12 py-6 text-lg font-raleway font-medium tracking-wide hover:scale-105 transition-transform duration-200"
+              className="px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide hover:scale-105 transition-transform duration-200"
             >
               Shop Now
             </Button>

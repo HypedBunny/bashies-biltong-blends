@@ -6,29 +6,29 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-background">
+    <section id="contact" className="py-16 sm:py-20 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 lg:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-anton text-primary mb-6 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-anton text-primary mb-4 sm:mb-6 tracking-wide">
             VISIT US
           </h2>
-          <p className="text-lg lg:text-xl font-raleway text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl font-raleway text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
             Come experience our premium biltong and deli in person, or get in touch with us
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="space-y-6 sm:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <Card className="border-border">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <MapPin className="h-6 w-6 text-primary" />
+                <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+                  <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-raleway font-semibold text-primary mb-2">Location</h3>
+                    <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Location</h3>
                     <p className="text-muted-foreground text-sm">
                       Gabriel Road, Wicklow Rd<br />
                       Plumstead, Cape Town, 7800<br />
@@ -39,13 +39,13 @@ const Contact = () => {
               </Card>
 
               <Card className="border-border">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-primary" />
+                <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+                  <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-raleway font-semibold text-primary mb-2">Phone</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Phone</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm">
                       +27 66 120 9331<br />
                       WhatsApp Available
                     </p>
@@ -54,13 +54,13 @@ const Contact = () => {
               </Card>
 
               <Card className="border-border">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-primary" />
+                <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+                  <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-raleway font-semibold text-primary mb-2">Email</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Email</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm">
                       hello@bashies.co.za<br />
                       orders@bashies.co.za
                     </p>
@@ -69,13 +69,13 @@ const Contact = () => {
               </Card>
 
               <Card className="border-border">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <Clock className="h-6 w-6 text-primary" />
+                <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
+                  <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                    <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-raleway font-semibold text-primary mb-2">Hours</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Hours</h3>
+                    <p className="text-muted-foreground text-xs sm:text-sm">
                       Mon-Fri: 9:00-18:00<br />
                       Sat: 9:00-17:00<br />
                       Sun: 9:00-14:00
@@ -106,11 +106,11 @@ const Contact = () => {
 
           {/* Contact Form */}
           <Card className="border-border">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-anton text-primary mb-6 tracking-wide">
+            <CardContent className="p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-anton text-primary mb-4 sm:mb-6 tracking-wide">
                 GET IN TOUCH
               </h3>
-              <form className="space-y-6">
+              <form className="space-y-4 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-raleway font-medium text-foreground mb-2">
@@ -166,7 +166,7 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full py-6 text-lg font-raleway font-medium tracking-wide"
+                  className="w-full py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide"
                 >
                   Send Message
                 </Button>
