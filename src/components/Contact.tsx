@@ -201,15 +201,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Best biltong in Cape Town! The quality is outstanding and the variety is amazing. The droëwors is absolutely delicious. Highly recommend!"
+                  "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed."
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">MJ</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LL</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Mike Johnson</p>
-                    <p className="text-xs font-raleway text-muted-foreground">2 weeks ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lee-Ann Läufs</p>
+                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 161 reviews • a year ago</p>
                   </div>
                 </div>
               </CardContent>
@@ -229,15 +229,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Family business with heart! Sarah and her team always provide exceptional service. The biltong is fresh, perfectly seasoned, and reminds me of home."
+                  "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great."
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LM</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">BB</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lisa Mitchell</p>
-                    <p className="text-xs font-raleway text-muted-foreground">1 month ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Bevan Booysen</p>
+                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 16 reviews • a year ago</p>
                   </div>
                 </div>
               </CardContent>
@@ -257,15 +257,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Incredible quality and authentic taste! Been a customer for years and they never disappoint. The boerewors is the best I've had outside of SA."
+                  "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop."
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">DK</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">NS</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">David Kumar</p>
-                    <p className="text-xs font-raleway text-muted-foreground">3 weeks ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Nicole Solomon</p>
+                    <p className="text-xs font-raleway text-muted-foreground">11 reviews • 10 months ago</p>
                   </div>
                 </div>
               </CardContent>
@@ -285,15 +285,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Friendly staff, clean shop, and the most delicious biltong varieties. Their chili bites are addictive! Perfect for gifts or treating yourself."
+                  "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!"
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">TC</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LL</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Tanya Chen</p>
-                    <p className="text-xs font-raleway text-muted-foreground">1 week ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lindsay Lange</p>
+                    <p className="text-xs font-raleway text-muted-foreground">18 reviews • a year ago</p>
                   </div>
                 </div>
               </CardContent>
@@ -313,15 +313,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Outstanding local business! Great prices, excellent quality, and they always have my favorites in stock. The whole family loves shopping here."
+                  "I just love Bashies Biltong. Their Pecanha Biltong is my favourite."
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">RP</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">YV</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Robert Peterson</p>
-                    <p className="text-xs font-raleway text-muted-foreground">2 days ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Yoke Saskia van der Merwe</p>
+                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 73 reviews • 7 months ago</p>
                   </div>
                 </div>
               </CardContent>
@@ -341,15 +341,15 @@ const Contact = () => {
                   <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
                 </div>
                 <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Perfect for expat South Africans! The taste takes me right back home. Amazing selection and the staff really know their products. Will be back!"
+                  "Bashies has a wide variety of delicious biltong, and their service is always fantastic!"
                 </p>
                 <div className="flex items-center">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">AM</span>
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">T</span>
                   </div>
                   <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Anne-Marie Williams</p>
-                    <p className="text-xs font-raleway text-muted-foreground">5 days ago</p>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Terri</p>
+                    <p className="text-xs font-raleway text-muted-foreground">5 reviews • a year ago</p>
                   </div>
                 </div>
               </CardContent>
