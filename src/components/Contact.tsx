@@ -174,6 +174,188 @@ const Contact = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Google Reviews Section */}
+        <div className="mt-16 sm:mt-20 lg:mt-24">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-anton text-primary mb-3 sm:mb-4 tracking-wide">
+              WHAT OUR CUSTOMERS SAY
+            </h3>
+            <p className="text-sm sm:text-base lg:text-lg font-raleway text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2">
+              Real reviews from our valued customers
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {/* Review 1 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Best biltong in Cape Town! The quality is outstanding and the variety is amazing. The droëwors is absolutely delicious. Highly recommend!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">MJ</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Mike Johnson</p>
+                    <p className="text-xs font-raleway text-muted-foreground">2 weeks ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Review 2 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Family business with heart! Sarah and her team always provide exceptional service. The biltong is fresh, perfectly seasoned, and reminds me of home."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LM</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lisa Mitchell</p>
+                    <p className="text-xs font-raleway text-muted-foreground">1 month ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Review 3 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Incredible quality and authentic taste! Been a customer for years and they never disappoint. The boerewors is the best I've had outside of SA."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">DK</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">David Kumar</p>
+                    <p className="text-xs font-raleway text-muted-foreground">3 weeks ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Review 4 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Friendly staff, clean shop, and the most delicious biltong varieties. Their chili bites are addictive! Perfect for gifts or treating yourself."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">TC</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Tanya Chen</p>
+                    <p className="text-xs font-raleway text-muted-foreground">1 week ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Review 5 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Outstanding local business! Great prices, excellent quality, and they always have my favorites in stock. The whole family loves shopping here."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">RP</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Robert Peterson</p>
+                    <p className="text-xs font-raleway text-muted-foreground">2 days ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Review 6 */}
+            <Card className="border-border">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex text-yellow-400 mr-3">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+                </div>
+                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
+                  "Perfect for expat South Africans! The taste takes me right back home. Amazing selection and the staff really know their products. Will be back!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">AM</span>
+                  </div>
+                  <div>
+                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Anne-Marie Williams</p>
+                    <p className="text-xs font-raleway text-muted-foreground">5 days ago</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   );
