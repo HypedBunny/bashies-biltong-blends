@@ -7,42 +7,36 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Classic South African beef biltong, perfectly seasoned and dried",
-      price: "R120",
       image: "traditional-biltong"
     },
     {
       id: 2,
       name: "Chili Biltong",
       description: "Spiced with carefully selected chilies for the perfect kick",
-      price: "R130",
       image: "chili-biltong"
     },
     {
       id: 3,
       name: "Droëwors",
       description: "Traditional dried sausage, a South African favorite",
-      price: "R95",
       image: "droewors"
     },
     {
       id: 4,
       name: "Biltong Powder",
       description: "Ground biltong perfect for seasoning and cooking",
-      price: "R85",
       image: "biltong-powder"
     },
     {
       id: 5,
       name: "Premium Cut Biltong",
       description: "Our finest cut, tender and full of flavor",
-      price: "R180",
       image: "premium-biltong"
     },
     {
       id: 6,
       name: "Variety Pack",
       description: "Sample our full range with this carefully curated selection",
-      price: "R250",
       image: "variety-pack"
     }
   ];
@@ -83,9 +77,6 @@ const Products = () => {
                     <p className="text-muted-foreground font-raleway text-xs xs:text-sm sm:text-sm leading-relaxed line-clamp-3">
                       {product.description}
                     </p>
-                  </div>
-                  <div className="text-lg xs:text-xl sm:text-2xl font-raleway font-bold text-primary mt-auto pt-2">
-                    {product.price}
                   </div>
                 </div>
               </CardContent>
