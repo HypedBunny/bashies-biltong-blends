@@ -302,7 +302,7 @@ const Contact = () => {
                 >
                   {reviews.map((review, index) => (
                     <div key={review.id} className="w-1/2 flex-shrink-0 px-2">
-                      <div className="h-80">
+                      <div className="min-h-[280px] h-auto">
                         <ReviewCard review={review} />
                       </div>
                     </div>
@@ -366,7 +366,7 @@ const Contact = () => {
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {reviews.map((review) => (
-                <div key={review.id} className="h-80">
+                <div key={review.id} className="min-h-[280px] h-auto">
                   <ReviewCard review={review} />
                 </div>
               ))}
