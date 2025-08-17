@@ -3,8 +3,104 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+
+  const reviews = [
+    {
+      id: 1,
+      name: "Lee-Ann Läufs",
+      initials: "LL",
+      text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
+      meta: "Local Guide • 161 reviews • a year ago"
+    },
+    {
+      id: 2,
+      name: "Bevan Booysen",
+      initials: "BB",
+      text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
+      meta: "Local Guide • 16 reviews • a year ago"
+    },
+    {
+      id: 3,
+      name: "Nicole Solomon",
+      initials: "NS",
+      text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
+      meta: "11 reviews • 10 months ago"
+    },
+    {
+      id: 4,
+      name: "Lindsay Lange",
+      initials: "LL",
+      text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
+      meta: "18 reviews • a year ago"
+    },
+    {
+      id: 5,
+      name: "Yoke Saskia van der Merwe",
+      initials: "YV",
+      text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
+      meta: "Local Guide • 73 reviews • 7 months ago"
+    },
+    {
+      id: 6,
+      name: "Terri",
+      initials: "T",
+      text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
+      meta: "5 reviews • a year ago"
+    }
+  ];
+
+  // Auto-rotate reviews every 4 seconds on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentReviewIndex((prevIndex) => 
+        prevIndex + 2 >= reviews.length ? 0 : prevIndex + 2
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [reviews.length]);
+
+  const getVisibleReviews = () => {
+    const visible = [];
+    for (let i = 0; i < 2; i++) {
+      const index = (currentReviewIndex + i) % reviews.length;
+      visible.push(reviews[index]);
+    }
+    return visible;
+  };
+
+  const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
+    <Card className="border-border h-full">
+      <CardContent className="p-4 sm:p-6 h-full flex flex-col">
+        <div className="flex items-center mb-3 sm:mb-4">
+          <div className="flex text-yellow-400 mr-3">
+            {[...Array(5)].map((_, i) => (
+              <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+          </div>
+          <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+        </div>
+        <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed flex-grow">
+          "{review.text}"
+        </p>
+        <div className="flex items-center mt-auto">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+            <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">{review.initials}</span>
+          </div>
+          <div>
+            <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">{review.name}</p>
+            <p className="text-xs font-raleway text-muted-foreground">{review.meta}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
   return (
     <section id="contact" className="py-16 sm:py-20 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,174 +282,20 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {/* Review 1 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LL</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lee-Ann Läufs</p>
-                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 161 reviews • a year ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Mobile Reviews - 2 at a time with auto-rotation */}
+          <div className="md:hidden">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {getVisibleReviews().map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          </div>
 
-            {/* Review 2 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">BB</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Bevan Booysen</p>
-                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 16 reviews • a year ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Review 3 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">NS</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Nicole Solomon</p>
-                    <p className="text-xs font-raleway text-muted-foreground">11 reviews • 10 months ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Review 4 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">LL</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Lindsay Lange</p>
-                    <p className="text-xs font-raleway text-muted-foreground">18 reviews • a year ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Review 5 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "I just love Bashies Biltong. Their Pecanha Biltong is my favourite."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">YV</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Yoke Saskia van der Merwe</p>
-                    <p className="text-xs font-raleway text-muted-foreground">Local Guide • 73 reviews • 7 months ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Review 6 */}
-            <Card className="border-border">
-              <CardContent className="p-4 sm:p-6">
-                <div className="flex items-center mb-3 sm:mb-4">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
-                </div>
-                <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed">
-                  "Bashies has a wide variety of delicious biltong, and their service is always fantastic!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">T</span>
-                  </div>
-                  <div>
-                    <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">Terri</p>
-                    <p className="text-xs font-raleway text-muted-foreground">5 reviews • a year ago</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Desktop Reviews - All 6 in grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {reviews.map((review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
           </div>
         </div>
       </div>

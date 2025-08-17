@@ -55,7 +55,7 @@ const Products = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {products.map((product) => (
             <Card key={product.id} className="group cursor-pointer border-border hover:shadow-lg transition-all duration-300 bg-card h-full flex flex-col">
               <CardContent className="p-0 flex flex-col h-full">
@@ -91,7 +91,7 @@ const Products = () => {
             variant="outline"
             className="px-6 xs:px-8 sm:px-10 md:px-12 py-3 xs:py-4 sm:py-5 md:py-6 text-sm xs:text-base sm:text-lg font-raleway font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors"
           >
-            View All Products
+            Online Store Coming Soon
           </Button>
         </div>
       </div>

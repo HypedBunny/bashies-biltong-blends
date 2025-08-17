@@ -31,7 +31,7 @@ const Hero = () => {
               size="lg" 
               className="px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide hover:scale-105 transition-transform duration-200"
             >
-              Shop Now
+              View Products
             </Button>
           </div>
         </div>
