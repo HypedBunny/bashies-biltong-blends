@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const reviews = [
     {
@@ -53,28 +54,33 @@ const Contact = () => {
     }
   ];
 
-  // Auto-rotate reviews every 4 seconds on mobile
+  // Auto-slide reviews every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentReviewIndex((prevIndex) => 
-        prevIndex + 2 >= reviews.length ? 0 : prevIndex + 2
-      );
+      if (!isTransitioning) {
+        setIsTransitioning(true);
+        setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+        setTimeout(() => setIsTransitioning(false), 500);
+      }
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [reviews.length]);
+  }, [reviews.length, isTransitioning]);
 
-  const getVisibleReviews = () => {
-    const visible = [];
-    for (let i = 0; i < 2; i++) {
-      const index = (currentReviewIndex + i) % reviews.length;
-      visible.push(reviews[index]);
+  const handleSlide = (direction: 'next' | 'prev') => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
+    if (direction === 'next') {
+      setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    } else {
+      setCurrentReviewIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
     }
-    return visible;
+    setTimeout(() => setIsTransitioning(false), 500);
   };
 
   const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-    <Card className="border-border h-full">
+    <Card className="border-border flex-shrink-0 w-full h-full">
       <CardContent className="p-4 sm:p-6 h-full flex flex-col">
         <div className="flex items-center mb-3 sm:mb-4">
           <div className="flex text-yellow-400 mr-3">
@@ -282,20 +288,89 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Mobile Reviews - 2 at a time with auto-rotation */}
-          <div className="md:hidden">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              {getVisibleReviews().map((review) => (
-                <ReviewCard key={review.id} review={review} />
+          {/* Reviews Slider */}
+          <div className="relative">
+            {/* Mobile Slider */}
+            <div className="md:hidden">
+              <div className="relative overflow-hidden">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ 
+                    transform: `translateX(-${currentReviewIndex * 50}%)`,
+                    width: `${reviews.length * 50}%`
+                  }}
+                >
+                  {reviews.map((review, index) => (
+                    <div key={review.id} className="w-1/2 flex-shrink-0 px-2">
+                      <div className="h-80">
+                        <ReviewCard review={review} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Touch/Swipe overlay */}
+                <div 
+                  className="absolute inset-0 flex"
+                  onTouchStart={(e) => {
+                    const startX = e.touches[0].clientX;
+                    const handleTouchEnd = (endEvent: TouchEvent) => {
+                      const endX = endEvent.changedTouches[0].clientX;
+                      const diff = startX - endX;
+                      if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                          handleSlide('next');
+                        } else {
+                          handleSlide('prev');
+                        }
+                      }
+                      document.removeEventListener('touchend', handleTouchEnd);
+                    };
+                    document.addEventListener('touchend', handleTouchEnd);
+                  }}
+                >
+                  <button 
+                    className="w-1/2 h-full"
+                    onClick={() => handleSlide('prev')}
+                    aria-label="Previous reviews"
+                  />
+                  <button 
+                    className="w-1/2 h-full"
+                    onClick={() => handleSlide('next')}
+                    aria-label="Next reviews"
+                  />
+                </div>
+              </div>
+              
+              {/* Dots indicator */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {reviews.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                      index === currentReviewIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+                    }`}
+                    onClick={() => {
+                      if (!isTransitioning) {
+                        setIsTransitioning(true);
+                        setCurrentReviewIndex(index);
+                        setTimeout(() => setIsTransitioning(false), 500);
+                      }
+                    }}
+                    aria-label={`Go to review ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Grid */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {reviews.map((review) => (
+                <div key={review.id} className="h-80">
+                  <ReviewCard review={review} />
+                </div>
               ))}
             </div>
-          </div>
-
-          {/* Desktop Reviews - All 6 in grid */}
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {reviews.map((review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
           </div>
         </div>
       </div>
