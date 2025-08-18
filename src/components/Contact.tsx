@@ -2,49 +2,70 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { useState, useEffect } from "react";
+import { MapPin, Phone, Mail, Clock, Shield, Star } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
 
   const reviews = [
     {
       id: 1,
       name: "Lee-Ann Läufs",
       initials: "LL",
+      rating: 5,
+      date: "2 weeks ago",
       text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
+      verified: true,
     },
     {
       id: 2,
       name: "Bevan Booysen",
       initials: "BB",
+      rating: 5,
+      date: "1 month ago",
       text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
+      verified: true,
     },
     {
       id: 3,
       name: "Nicole Solomon",
       initials: "NS",
+      rating: 5,
+      date: "3 weeks ago",
       text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
+      verified: true,
     },
     {
       id: 4,
       name: "Lindsay Lange",
       initials: "LL",
+      rating: 5,
+      date: "2 months ago",
       text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
+      verified: false,
     },
     {
       id: 5,
       name: "Yoke Saskia van der Merwe",
       initials: "YV",
+      rating: 5,
+      date: "1 month ago",
       text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
+      verified: true,
     },
     {
       id: 6,
       name: "Terri",
       initials: "T",
+      rating: 5,
+      date: "3 weeks ago",
       text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
+      verified: false,
     }
   ];
 
@@ -61,6 +82,14 @@ const Contact = () => {
     return () => clearInterval(interval);
   }, [reviews.length, isTransitioning]);
 
+  // Measure viewport width for precise slide movement
+  useEffect(() => {
+    const update = () => setViewportWidth(containerRef.current?.clientWidth || 0);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   const handleSlide = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
     
@@ -74,28 +103,55 @@ const Contact = () => {
   };
 
   const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-    <Card className="border-border flex-shrink-0 w-full">
-      <CardContent className="p-3 sm:p-6 flex flex-col min-h-[200px]">
-        <div className="flex items-center mb-3 sm:mb-4">
-          <div className="flex text-yellow-400 mr-3">
+    <Card className="border-border flex-shrink-0 w-full shadow-sm hover:shadow-md transition-shadow duration-200">
+      <CardContent className="p-4 sm:p-6 space-y-4">
+        {/* Header with rating and source */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
-              <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
+              <Star 
+                key={i} 
+                className={`w-4 h-4 ${
+                  i < review.rating 
+                    ? 'text-yellow-400 fill-yellow-400' 
+                    : 'text-gray-300 fill-gray-300'
+                }`}
+              />
             ))}
           </div>
-          <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
+          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+            {review.verified && (
+              <div className="flex items-center space-x-1 text-green-600">
+                <Shield className="w-3 h-3" />
+                <span className="font-medium">Verified</span>
+              </div>
+            )}
+            <span>Google Reviews</span>
+          </div>
         </div>
-        <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed flex-grow">
+
+        {/* Review text */}
+        <blockquote className="text-sm sm:text-base font-raleway text-foreground leading-relaxed italic">
           "{review.text}"
-        </p>
-        <div className="flex items-center mt-auto">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-            <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">{review.initials}</span>
+        </blockquote>
+
+        {/* Reviewer info */}
+        <div className="flex items-center justify-between pt-2 border-t border-border/50">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center">
+              <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">
+                {review.initials}
+              </span>
+            </div>
+            <div>
+              <p className="text-sm font-raleway font-medium text-foreground">
+                {review.name}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">{review.name}</p>
-          </div>
+          <span className="text-xs text-muted-foreground font-raleway">
+            {review.date}
+          </span>
         </div>
       </CardContent>
     </Card>
@@ -285,16 +341,16 @@ const Contact = () => {
           <div className="relative">
             {/* Mobile Slider */}
             <div className="md:hidden px-4">
-              <div className="relative overflow-hidden">
+              <div ref={containerRef} className="relative overflow-hidden">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
-                    transform: `translateX(-${currentReviewIndex * 100}%)`,
-                    width: `${reviews.length * 100}%`
+                    transform: `translateX(-${currentReviewIndex * viewportWidth}px)`,
+                    willChange: 'transform'
                   }}
                 >
                   {reviews.map((review) => (
-                    <div key={review.id} className="w-full flex-shrink-0 px-2">
+                    <div key={review.id} className="min-w-full shrink-0">
                       <ReviewCard review={review} />
                     </div>
                   ))}
