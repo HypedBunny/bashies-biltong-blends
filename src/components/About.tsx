@@ -55,7 +55,7 @@ const About = () => {
           <div className="relative">
             <div className="aspect-[4/5] bg-muted rounded-lg overflow-hidden">
               <img
-                src="/images/store/storeFront.jpg"
+                src="/images/store/storeFront.jpeg"
                 alt="Bashies Biltong storefront - premium South African deli"
                 className="w-full h-full object-cover"
               />
