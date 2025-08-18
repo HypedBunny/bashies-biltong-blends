@@ -3,15 +3,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Shield, Star } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [viewportWidth, setViewportWidth] = useState(0);
-
-
   const reviews = [
     {
       id: 1,
@@ -82,14 +78,6 @@ const Contact = () => {
     return () => clearInterval(interval);
   }, [reviews.length, isTransitioning]);
 
-  // Measure viewport width for precise slide movement
-  useEffect(() => {
-    const update = () => setViewportWidth(containerRef.current?.clientWidth || 0);
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-
   const handleSlide = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
     
@@ -103,15 +91,15 @@ const Contact = () => {
   };
 
   const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-    <Card className="border-border flex-shrink-0 w-full shadow-sm hover:shadow-md transition-shadow duration-200">
-      <CardContent className="p-4 sm:p-6 space-y-4">
+    <Card className="border-border w-full shadow-sm hover:shadow-md transition-shadow duration-200">
+      <CardContent className="p-3 xs:p-4 sm:p-5 lg:p-6 space-y-3 xs:space-y-4">
         {/* Header with rating and source */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
               <Star 
                 key={i} 
-                className={`w-4 h-4 ${
+                className={`w-3 h-3 xs:w-4 xs:h-4 ${
                   i < review.rating 
                     ? 'text-yellow-400 fill-yellow-400' 
                     : 'text-gray-300 fill-gray-300'
@@ -119,37 +107,37 @@ const Contact = () => {
               />
             ))}
           </div>
-          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+          <div className="flex items-center space-x-1 xs:space-x-2 text-xs text-muted-foreground">
             {review.verified && (
               <div className="flex items-center space-x-1 text-green-600">
                 <Shield className="w-3 h-3" />
-                <span className="font-medium">Verified</span>
+                <span className="font-medium hidden xs:inline">Verified</span>
               </div>
             )}
-            <span>Google Reviews</span>
+            <span className="text-xs">Google</span>
           </div>
         </div>
 
         {/* Review text */}
-        <blockquote className="text-sm sm:text-base font-raleway text-foreground leading-relaxed italic">
+        <blockquote className="text-sm xs:text-sm sm:text-base font-raleway text-foreground leading-relaxed italic min-h-[3rem] xs:min-h-[4rem]">
           "{review.text}"
         </blockquote>
 
         {/* Reviewer info */}
-        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center">
+        <div className="flex items-center justify-between pt-2 xs:pt-3 border-t border-border/50">
+          <div className="flex items-center space-x-2 xs:space-x-3">
+            <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">
                 {review.initials}
               </span>
             </div>
-            <div>
-              <p className="text-sm font-raleway font-medium text-foreground">
+            <div className="min-w-0 flex-1">
+              <p className="text-xs xs:text-sm font-raleway font-medium text-foreground truncate">
                 {review.name}
               </p>
             </div>
           </div>
-          <span className="text-xs text-muted-foreground font-raleway">
+          <span className="text-xs text-muted-foreground font-raleway flex-shrink-0">
             {review.date}
           </span>
         </div>
@@ -339,26 +327,28 @@ const Contact = () => {
 
           {/* Reviews Slider */}
           <div className="relative">
-            {/* Mobile Slider */}
-            <div className="md:hidden px-4">
-              <div ref={containerRef} className="relative overflow-hidden">
+            {/* Mobile/Tablet Slider */}
+            <div className="lg:hidden">
+              <div className="relative overflow-hidden px-4 sm:px-6">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
-                    transform: `translateX(-${currentReviewIndex * viewportWidth}px)`,
+                    transform: `translateX(-${currentReviewIndex * 100}%)`,
                     willChange: 'transform'
                   }}
                 >
                   {reviews.map((review) => (
-                    <div key={review.id} className="min-w-full shrink-0">
-                      <ReviewCard review={review} />
+                    <div key={review.id} className="w-full flex-shrink-0 px-2">
+                      <div className="max-w-full">
+                        <ReviewCard review={review} />
+                      </div>
                     </div>
                   ))}
                 </div>
                 
                 {/* Touch/Swipe overlay */}
                 <div 
-                  className="absolute inset-0 flex"
+                  className="absolute inset-0 flex z-10"
                   onTouchStart={(e) => {
                     const startX = e.touches[0].clientX;
                     const handleTouchEnd = (endEvent: TouchEvent) => {
@@ -377,12 +367,12 @@ const Contact = () => {
                   }}
                 >
                   <button 
-                    className="w-1/2 h-full"
+                    className="w-1/2 h-full opacity-0 hover:opacity-10 hover:bg-black/5 transition-opacity"
                     onClick={() => handleSlide('prev')}
                     aria-label="Previous review"
                   />
                   <button 
-                    className="w-1/2 h-full"
+                    className="w-1/2 h-full opacity-0 hover:opacity-10 hover:bg-black/5 transition-opacity"
                     onClick={() => handleSlide('next')}
                     aria-label="Next review"
                   />
@@ -390,12 +380,14 @@ const Contact = () => {
               </div>
               
               {/* Dots indicator */}
-              <div className="flex justify-center mt-4 space-x-2">
+              <div className="flex justify-center mt-6 space-x-2">
                 {reviews.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                      index === currentReviewIndex ? 'bg-primary' : 'bg-muted-foreground/30'
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                      index === currentReviewIndex 
+                        ? 'bg-primary scale-110' 
+                        : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
                     }`}
                     onClick={() => {
                       if (!isTransitioning) {
@@ -411,7 +403,7 @@ const Contact = () => {
             </div>
 
             {/* Desktop Grid */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
               {reviews.map((review) => (
                 <ReviewCard key={review.id} review={review} />
               ))}
