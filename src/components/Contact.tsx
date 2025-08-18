@@ -3,11 +3,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [viewportWidth, setViewportWidth] = useState(0);
+
 
   const reviews = [
     {
@@ -61,6 +64,14 @@ const Contact = () => {
     return () => clearInterval(interval);
   }, [reviews.length, isTransitioning]);
 
+  // Measure viewport width for precise slide movement
+  useEffect(() => {
+    const update = () => setViewportWidth(containerRef.current?.clientWidth || 0);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
   const handleSlide = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
     
@@ -86,7 +97,7 @@ const Contact = () => {
           </div>
           <span className="text-xs sm:text-sm font-raleway text-muted-foreground">Google</span>
         </div>
-        <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed flex-grow">
+        <p className="text-sm sm:text-base font-raleway text-foreground mb-3 sm:mb-4 leading-relaxed flex-grow break-words hyphens-auto whitespace-normal">
           "{review.text}"
         </p>
         <div className="flex items-center mt-auto">
@@ -285,11 +296,12 @@ const Contact = () => {
           <div className="relative">
             {/* Mobile Slider */}
             <div className="md:hidden px-4">
-              <div className="relative overflow-hidden">
+              <div ref={containerRef} className="relative overflow-hidden">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
-                    transform: `translateX(-${currentReviewIndex * 100}%)`
+                    transform: `translateX(-${currentReviewIndex * viewportWidth}px)`,
+                    willChange: 'transform'
                   }}
                 >
                   {reviews.map((review) => (
