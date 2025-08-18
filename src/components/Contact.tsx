@@ -285,16 +285,15 @@ const Contact = () => {
           <div className="relative">
             {/* Mobile Slider */}
             <div className="md:hidden">
-              <div className="relative overflow-hidden mx-4">
+              <div className="relative overflow-hidden px-4">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
-                    transform: `translateX(-${currentReviewIndex * 100}%)`,
-                    width: `${reviews.length * 100}%`
+                    transform: `translateX(-${currentReviewIndex * 100}%)`
                   }}
                 >
                   {reviews.map((review) => (
-                    <div key={review.id} className="w-full flex-shrink-0 px-2">
+                    <div key={review.id} className="min-w-full shrink-0 px-2">
                       <ReviewCard review={review} />
                     </div>
                   ))}
