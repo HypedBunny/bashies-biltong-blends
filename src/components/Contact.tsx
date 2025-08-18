@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useMobile } from "@/hooks/use-mobile";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
@@ -15,42 +16,36 @@ const Contact = () => {
       name: "Lee-Ann Läufs",
       initials: "LL",
       text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
-      meta: "Local Guide • 161 reviews • a year ago"
     },
     {
       id: 2,
       name: "Bevan Booysen",
       initials: "BB",
       text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
-      meta: "Local Guide • 16 reviews • a year ago"
     },
     {
       id: 3,
       name: "Nicole Solomon",
       initials: "NS",
       text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
-      meta: "11 reviews • 10 months ago"
     },
     {
       id: 4,
       name: "Lindsay Lange",
       initials: "LL",
       text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
-      meta: "18 reviews • a year ago"
     },
     {
       id: 5,
       name: "Yoke Saskia van der Merwe",
       initials: "YV",
       text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
-      meta: "Local Guide • 73 reviews • 7 months ago"
     },
     {
       id: 6,
       name: "Terri",
       initials: "T",
       text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
-      meta: "5 reviews • a year ago"
     }
   ];
 
@@ -81,7 +76,7 @@ const Contact = () => {
 
   const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
     <Card className="border-border flex-shrink-0 w-full h-full">
-      <CardContent className="p-4 sm:p-6 h-full flex flex-col">
+      <CardContent className="p-3 sm:p-6 h-full flex flex-col">
         <div className="flex items-center mb-3 sm:mb-4">
           <div className="flex text-yellow-400 mr-3">
             {[...Array(5)].map((_, i) => (
@@ -101,7 +96,6 @@ const Contact = () => {
           </div>
           <div>
             <p className="text-xs sm:text-sm font-raleway font-medium text-foreground">{review.name}</p>
-            <p className="text-xs font-raleway text-muted-foreground">{review.meta}</p>
           </div>
         </div>
       </CardContent>
@@ -291,17 +285,17 @@ const Contact = () => {
           {/* Reviews Slider */}
           <div className="relative">
             {/* Mobile Slider */}
-            <div className="md:hidden">
+            <div className="md:hidden px-4">
               <div className="relative overflow-hidden">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
-                    transform: `translateX(-${currentReviewIndex * 50}%)`,
-                    width: `${reviews.length * 50}%`
+                    transform: `translateX(-${currentReviewIndex * 100}%)`,
+                    width: `${reviews.length * 100}%`
                   }}
                 >
                   {reviews.map((review, index) => (
-                    <div key={review.id} className="w-1/2 flex-shrink-0 px-2">
+                    <div key={review.id} className="w-full flex-shrink-0 px-2">
                       <div className="min-h-[280px] h-auto">
                         <ReviewCard review={review} />
                       </div>
@@ -332,12 +326,12 @@ const Contact = () => {
                   <button 
                     className="w-1/2 h-full"
                     onClick={() => handleSlide('prev')}
-                    aria-label="Previous reviews"
+                    aria-label="Previous review"
                   />
                   <button 
                     className="w-1/2 h-full"
                     onClick={() => handleSlide('next')}
-                    aria-label="Next reviews"
+                    aria-label="Next review"
                   />
                 </div>
               </div>

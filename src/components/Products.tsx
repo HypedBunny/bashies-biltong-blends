@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 
 const Products = () => {
   const products = [
@@ -7,39 +8,45 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Classic South African beef biltong, perfectly seasoned and dried",
-      image: "traditional-biltong"
+      image: "/images/products/traditional-biltong.jpg"
     },
     {
       id: 2,
       name: "Chili Biltong",
       description: "Spiced with carefully selected chilies for the perfect kick",
-      image: "chili-biltong"
+      image: "/images/products/chili-biltong.jpg"
     },
     {
       id: 3,
       name: "Droëwors",
       description: "Traditional dried sausage, a South African favorite",
-      image: "droewors"
+      image: "/images/products/droewors.jpg"
     },
     {
       id: 4,
       name: "Biltong Powder",
       description: "Ground biltong perfect for seasoning and cooking",
-      image: "biltong-powder"
+      image: "/images/products/biltong-powder.jpg"
     },
     {
       id: 5,
       name: "Premium Cut Biltong",
       description: "Our finest cut, tender and full of flavor",
-      image: "premium-biltong"
+      image: "/images/products/premium-biltong.jpg"
     },
     {
       id: 6,
       name: "Variety Pack",
       description: "Sample our full range with this carefully curated selection",
-      image: "variety-pack"
+      image: "/images/products/variety-pack.jpg"
     }
   ];
+
+  const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
+
+  const handleImageError = (productId: number) => {
+    setImageErrors(prev => ({ ...prev, [productId]: true }));
+  };
 
   return (
     <section id="shop" className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-muted/20">
@@ -61,11 +68,20 @@ const Products = () => {
               <CardContent className="p-0 flex flex-col h-full">
                 {/* Product Image */}
                 <div className="aspect-square bg-muted overflow-hidden rounded-t-lg flex-shrink-0">
-                  <div className="w-full h-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <p className="text-muted-foreground font-raleway text-center px-2 xs:px-3 sm:px-4 text-xs xs:text-sm">
-                      {product.name}<br />Product Image
-                    </p>
-                  </div>
+                  {!imageErrors[product.id] ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={() => handleImageError(product.id)}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                      <p className="text-muted-foreground font-raleway text-center px-2 xs:px-3 sm:px-4 text-xs xs:text-sm">
+                        {product.name}<br />Image Coming Soon
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Product Info */}

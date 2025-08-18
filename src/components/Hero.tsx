@@ -22,7 +22,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-raleway text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed px-2">
-            Authentic taste, refined experience
+            Discover the authentic taste of South African biltong and deli delights.
           </p>
 
           {/* CTA Button */}

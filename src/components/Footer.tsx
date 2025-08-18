@@ -26,12 +26,11 @@ const Footer = () => {
         <div className="text-center space-y-8">
           {/* Logo */}
           <div>
-            <h2 className="text-3xl lg:text-4xl font-anton tracking-wider">
-              BASHIES
-            </h2>
-            <p className="mt-2 font-raleway text-primary-foreground/80">
-              Deli & Biltong
-            </p>
+            <img 
+              src="/bannerWhite.png" 
+              alt="Bashies Deli & Biltong" 
+              className="h-16 lg:h-20 mx-auto"
+            />
           </div>
 
           {/* Navigation */}

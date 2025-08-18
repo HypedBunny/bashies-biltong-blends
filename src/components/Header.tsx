@@ -33,7 +33,12 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center space-x-2 lg:space-x-3">
+            <img
+              src="/logoBlack.png"
+              alt="Bashies Logo"
+              className="h-8 w-8 lg:h-10 lg:w-10 object-cover rounded-full"
+            />
             <h1 className="text-2xl lg:text-3xl font-anton text-primary tracking-wider">
               BASHIES
             </h1>
