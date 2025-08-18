@@ -285,9 +285,9 @@ const Contact = () => {
           <div className="relative">
             {/* Mobile Slider */}
             <div className="md:hidden">
-              <div className="relative overflow-hidden px-4">
+              <div className="relative overflow-hidden">
                 <div 
-                  className="flex transition-transform duration-500 ease-in-out"
+                  className="flex transition-transform duration-500 ease-in-out px-4"
                   style={{ 
                     transform: `translateX(-${currentReviewIndex * 100}%)`
                   }}
@@ -301,7 +301,7 @@ const Contact = () => {
                 
                 {/* Touch/Swipe overlay */}
                 <div 
-                  className="absolute inset-0 flex"
+                  className="absolute inset-0 flex px-4"
                   onTouchStart={(e) => {
                     const startX = e.touches[0].clientX;
                     const handleTouchEnd = (endEvent: TouchEvent) => {
