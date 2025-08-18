@@ -8,13 +8,13 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Classic South African beef biltong, perfectly seasoned and dried",
-      image: "/images/products/traditional-biltong.jpg"
+      image: "/images/products/beefBiltong.jpg"
     },
     {
       id: 2,
       name: "Chili Biltong",
       description: "Spiced with carefully selected chilies for the perfect kick",
-      image: "/images/products/chili-biltong.jpg"
+      image: "/images/products/chillie.jpg"
     },
     {
       id: 3,
@@ -26,7 +26,7 @@ const Products = () => {
       id: 4,
       name: "Biltong Powder",
       description: "Ground biltong perfect for seasoning and cooking",
-      image: "/images/products/biltong-powder.jpg"
+      image: "/images/products/biltongPowder.jpg"
     },
     {
       id: 5,

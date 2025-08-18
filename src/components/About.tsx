@@ -51,15 +51,14 @@ const About = () => {
             </div>
           </div>
 
-          {/* Image Placeholder */}
+          {/* Store Front Image */}
           <div className="relative">
             <div className="aspect-[4/5] bg-muted rounded-lg overflow-hidden">
-              {/* This would be replaced with actual store interior or biltong preparation image */}
-              <div className="w-full h-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center">
-                <p className="text-muted-foreground font-raleway text-center px-6">
-                  Premium biltong preparation<br />or store interior image
-                </p>
-              </div>
+              <img
+                src="/images/store/storeFront.jpg"
+                alt="Bashies Biltong storefront - premium South African deli"
+                className="w-full h-full object-cover"
+              />
             </div>
             
             {/* Decorative element */}
