@@ -284,16 +284,16 @@ const Contact = () => {
           {/* Reviews Slider */}
           <div className="relative">
             {/* Mobile Slider */}
-            <div className="md:hidden">
+            <div className="md:hidden px-4">
               <div className="relative overflow-hidden">
                 <div 
-                  className="flex transition-transform duration-500 ease-in-out px-4"
+                  className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
                     transform: `translateX(-${currentReviewIndex * 100}%)`
                   }}
                 >
                   {reviews.map((review) => (
-                    <div key={review.id} className="min-w-full shrink-0 px-2">
+                    <div key={review.id} className="min-w-full shrink-0">
                       <ReviewCard review={review} />
                     </div>
                   ))}
@@ -301,7 +301,7 @@ const Contact = () => {
                 
                 {/* Touch/Swipe overlay */}
                 <div 
-                  className="absolute inset-0 flex px-4"
+                  className="absolute inset-0 flex"
                   onTouchStart={(e) => {
                     const startX = e.touches[0].clientX;
                     const handleTouchEnd = (endEvent: TouchEvent) => {
