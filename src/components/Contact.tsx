@@ -284,8 +284,8 @@ const Contact = () => {
           {/* Reviews Slider */}
           <div className="relative">
             {/* Mobile Slider */}
-            <div className="md:hidden px-4">
-              <div className="relative overflow-hidden">
+            <div className="md:hidden">
+              <div className="relative overflow-hidden mx-4">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ 
