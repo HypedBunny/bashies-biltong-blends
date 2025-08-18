@@ -4,7 +4,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useMobile } from "@/hooks/use-mobile";
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
@@ -75,8 +74,8 @@ const Contact = () => {
   };
 
   const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-    <Card className="border-border flex-shrink-0 w-full h-full">
-      <CardContent className="p-3 sm:p-6 h-full flex flex-col">
+    <Card className="border-border flex-shrink-0 w-full">
+      <CardContent className="p-3 sm:p-6 flex flex-col min-h-[200px]">
         <div className="flex items-center mb-3 sm:mb-4">
           <div className="flex text-yellow-400 mr-3">
             {[...Array(5)].map((_, i) => (
@@ -294,11 +293,9 @@ const Contact = () => {
                     width: `${reviews.length * 100}%`
                   }}
                 >
-                  {reviews.map((review, index) => (
+                  {reviews.map((review) => (
                     <div key={review.id} className="w-full flex-shrink-0 px-2">
-                      <div className="min-h-[280px] h-auto">
-                        <ReviewCard review={review} />
-                      </div>
+                      <ReviewCard review={review} />
                     </div>
                   ))}
                 </div>
@@ -360,9 +357,7 @@ const Contact = () => {
             {/* Desktop Grid */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {reviews.map((review) => (
-                <div key={review.id} className="min-h-[280px] h-auto">
-                  <ReviewCard review={review} />
-                </div>
+                <ReviewCard key={review.id} review={review} />
               ))}
             </div>
           </div>
