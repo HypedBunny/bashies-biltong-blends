@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('shop');
+    productsSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-background">
       {/* Background Image Placeholder */}
@@ -29,6 +34,7 @@ const Hero = () => {
           <div className="pt-4 sm:pt-8">
             <Button 
               size="lg" 
+              onClick={scrollToProducts}
               className="px-8 sm:px-12 py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide hover:scale-105 transition-transform duration-200"
             >
               View Products
