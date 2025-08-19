@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 const Products = () => {
   const products = [
@@ -43,9 +44,14 @@ const Products = () => {
   ];
 
   const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleImageError = (productId: number) => {
     setImageErrors(prev => ({ ...prev, [productId]: true }));
+  };
+
+  const handleProductClick = () => {
+    setShowPopup(true);
   };
 
   return (
@@ -64,7 +70,7 @@ const Products = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {products.map((product) => (
-            <Card key={product.id} className="group cursor-pointer border-border hover:shadow-lg transition-all duration-300 bg-card h-full flex flex-col">
+            <Card key={product.id} onClick={handleProductClick} className="group cursor-pointer border-border hover:shadow-lg transition-all duration-300 bg-card h-full flex flex-col">
               <CardContent className="p-0 flex flex-col h-full">
                 {/* Product Image */}
                 <div className="aspect-square bg-muted overflow-hidden rounded-t-lg flex-shrink-0">
@@ -111,6 +117,32 @@ const Products = () => {
           </Button>
         </div>
       </div>
+
+      {/* Popup Overlay */}
+      {showPopup && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+          onClick={() => setShowPopup(false)}
+        >
+          <div 
+            className="bg-muted/90 backdrop-blur-sm rounded-lg p-6 max-w-sm w-full text-center shadow-lg border border-border/20 relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <X size={20} />
+            </button>
+            <h3 className="text-lg font-raleway font-semibold text-foreground mb-3">
+              Sorry, Online Store Coming Soon
+            </h3>
+            <p className="text-muted-foreground font-raleway text-sm leading-relaxed">
+              For enquiries, please use our contact form
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
