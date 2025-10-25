@@ -20,7 +20,7 @@ const Products = () => {
     {
       id: 3,
       name: "Droëwors",
-      description: "Traditional dried sausage, a South African favorite",
+      description: "Our traditional beef droëwors is made from premium cuts of lean beef, expertly spiced and naturally air-dried for the perfect flavour. Every bite delivers that classic South African taste — rich, savoury, and deliciously moreish.",
       image: "/images/products/droewors.jpg"
     },
     {
@@ -31,8 +31,8 @@ const Products = () => {
     },
     {
       id: 5,
-      name: "Premium Cut Biltong",
-      description: "Our finest cut, tender and full of flavor",
+      name: "Picanha Beef Biltong",
+      description: "Our Geelvet C-grade picanha beef biltong is crafted from the prized rump cap, known for its rich marbling and bold flavour. Naturally air-dried and seasoned with our signature spice blend, it offers a tender, juicy texture and that unmistakable, full-bodied biltong taste South Africans love.",
       image: "/images/products/premium-biltong.jpg"
     },
     {

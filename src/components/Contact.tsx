@@ -200,8 +200,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Email</h3>
                     <p className="text-muted-foreground text-xs sm:text-sm">
-                      hello@bashies.co.za<br />
-                      orders@bashies.co.za
+                      hello@bashies.co.za
                     </p>
                   </div>
                 </CardContent>
