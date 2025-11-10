@@ -11,7 +11,7 @@ const About = () => {
               </h2>
               <div className="space-y-4 sm:space-y-6 font-raleway text-foreground leading-relaxed">
                 <p className="text-base sm:text-lg lg:text-xl font-semibold">
-                  Every great story starts at home — and ours began in a garage.
+                  Inspired by our children, Ashleigh and Sebastian, the name Bashies blends their names and their spirit—because family has always been at the heart of our story
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
                   Bashies was born from the hearts and hustle of Tina and Rowan Arendse, inspired by their two children, Ashleigh and Sebastian — the "Ash" and "Bash" behind the name. What began as a simple family idea quickly grew into a shared dream, driven by passion, perseverance, and the belief that good food brings people together.
@@ -39,7 +39,7 @@ const About = () => {
           </div>
 
           {/* Store Front Image */}
-          <div className="relative">
+          {/* <div className="relative">
             <div className="aspect-[4/5] bg-muted rounded-lg overflow-hidden">
               <img
                 src="/images/store/storeFront.jpeg"
@@ -48,9 +48,8 @@ const About = () => {
               />
             </div>
             
-            {/* Decorative element */}
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/5 rounded-lg -z-10"></div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
