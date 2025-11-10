@@ -36,34 +36,6 @@ const About = () => {
                 </p>
               </div>
             </div>
-
-            {/* Quality Points */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 pt-6 sm:pt-8">
-              <div className="space-y-2">
-                <h3 className="font-raleway font-semibold text-primary text-base sm:text-lg">Premium Quality</h3>
-                <p className="text-muted-foreground text-xs sm:text-sm">
-                  Only the finest cuts of beef, sourced from trusted suppliers
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-raleway font-semibold text-primary text-lg">Traditional Methods</h3>
-                <p className="text-muted-foreground text-sm">
-                  Time-honored techniques passed down through generations
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-raleway font-semibold text-primary text-lg">Fresh Daily</h3>
-                <p className="text-muted-foreground text-sm">
-                  Made fresh in our modern facility with careful attention to detail
-                </p>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-raleway font-semibold text-primary text-lg">Authentic Taste</h3>
-                <p className="text-muted-foreground text-sm">
-                  True South African flavors that transport you home
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Store Front Image */}
