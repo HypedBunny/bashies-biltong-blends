@@ -28,7 +28,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email to business
     const emailResponse = await resend.emails.send({
-      from: "Bashies Contact Form <onboarding@resend.dev>",
+      from: "Bashies Contact Form <contact@bashies.co.za>",
       to: ["hello@bashies.co.za"],
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
