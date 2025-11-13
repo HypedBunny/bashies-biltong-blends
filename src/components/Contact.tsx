@@ -4,10 +4,71 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock, Shield, Star } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const contactFormSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().min(1, "Phone number is required").max(20, "Phone must be less than 20 characters"),
+  message: z.string().trim().min(1, "Message is required").max(1000, "Message must be less than 1000 characters"),
+});
+
+type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: values,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message sent!",
+        description: "Thank you for contacting us. We'll get back to you soon.",
+      });
+
+      form.reset();
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or call us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const reviews = [
     {
       id: 1,
@@ -248,67 +309,99 @@ const Contact = () => {
               <h3 className="text-xl sm:text-2xl font-anton text-primary mb-4 sm:mb-6 tracking-wide">
                 GET IN TOUCH
               </h3>
-              <form className="space-y-4 sm:space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-raleway font-medium text-foreground mb-2">
-                      First Name
-                    </label>
-                    <Input 
-                      placeholder="Your first name"
-                      className="font-raleway"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-raleway font-medium text-foreground mb-2">
-                      Last Name
-                    </label>
-                    <Input 
-                      placeholder="Your last name"
-                      className="font-raleway"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-raleway font-medium text-foreground mb-2">
-                    Email
-                  </label>
-                  <Input 
-                    type="email" 
-                    placeholder="your.email@example.com"
-                    className="font-raleway"
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-raleway font-medium text-foreground">
+                          Name
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Your full name"
+                            className="font-raleway"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                <div>
-                  <label className="block text-sm font-raleway font-medium text-foreground mb-2">
-                    Phone (Optional)
-                  </label>
-                  <Input 
-                    placeholder="+27 12 345 6789"
-                    className="font-raleway"
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-raleway font-medium text-foreground">
+                          Email
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            type="email" 
+                            placeholder="your.email@example.com"
+                            className="font-raleway"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                <div>
-                  <label className="block text-sm font-raleway font-medium text-foreground mb-2">
-                    Message
-                  </label>
-                  <Textarea 
-                    placeholder="Tell us how we can help you..."
-                    rows={5}
-                    className="font-raleway resize-none"
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-raleway font-medium text-foreground">
+                          Phone
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="+27 12 345 6789"
+                            className="font-raleway"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide"
-                >
-                  Send Message
-                </Button>
-              </form>
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-raleway font-medium text-foreground">
+                          Message
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Tell us how we can help you..."
+                            rows={5}
+                            className="font-raleway resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button 
+                    type="submit" 
+                    className="w-full py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              </Form>
             </CardContent>
           </Card>
         </div>
