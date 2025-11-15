@@ -17,7 +17,7 @@ const About = () => {
                   Inspired by our children, Ashleigh and Sebastian, the name Bashies blends their names and their spirit—because family has always been at the heart of our story
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
-                  Bashies was born from the hearts and hustle of Tina and Rowan Arendse, inspired by their two children, Ashleigh and Sebastian — the "Ash" and "Bash" behind the name. What began as a simple family idea quickly grew into a shared dream, driven by passion, perseverance, and the belief that good food brings people together.
+                  What began as a simple family idea quickly grew into a shared dream, driven by passion, perseverance, and the belief that good food brings people together.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
                   In 2020, while the world slowed down during lockdown, Tina and Rowan picked up the pace. From their garage, they started experimenting with high-protein lifestyle products and premium meats, laying the groundwork for a brand built on quality and connection.
@@ -29,7 +29,7 @@ const About = () => {
                   Behind the scenes, the next step was already taking shape: a storefront. Tina and Rowan envisioned a space that felt like home, where every customer could be greeted by name and experience Bashies in person. That dream came to life in July 2023, when the first Bashies store opened its doors.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
-                  Today, many who walk through those doors have been part of the journey from day one — from the garage to the markets to the store. Their loyalty reflects something bigger than business; it's a story of community, family, and heart.
+                  Today, many who walk through those doors have been part of the journey from day one. Their loyalty reflects something bigger than business; it's a story of community, family, and heart.
                 </p>
                 <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
                   And as Bashies continues to grow, one thing remains constant: it's still all about the people — the ones who believed, supported, and savoured every step of the journey.
@@ -41,26 +41,29 @@ const About = () => {
             </div>
           </div>
 
-          {/* Product Images */}
-          <div className="space-y-4">
-            <div className="relative">
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                <img
-                  src="/images/products/image1.jpeg"
-                  alt="Bashies Biltong premium products"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          {/* Product Image */}
+          <div className="relative">
+            {/* Main image container */}
+            <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden shadow-2xl">
+              <img
+                src="/images/products/image1.jpeg"
+                alt="Bashies Biltong premium products"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="relative">
-              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
-                <img
-                  src="/images/products/image2.jpeg"
-                  alt="Bashies Biltong authentic South African biltong"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+
+            {/* Outer decorative frame */}
+            <div className="absolute -inset-4 border-2 border-primary/20 rounded-xl -z-10"></div>
+            <div className="absolute -inset-3 border border-primary/10 rounded-lg -z-10"></div>
+
+            {/* Corner decorative elements */}
+            <div className="absolute -top-6 -left-6 w-16 h-16 border-t-4 border-l-4 border-primary/30 rounded-tl-xl"></div>
+            <div className="absolute -top-6 -right-6 w-16 h-16 border-t-4 border-r-4 border-primary/30 rounded-tr-xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-16 h-16 border-b-4 border-l-4 border-primary/30 rounded-bl-xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-16 h-16 border-b-4 border-r-4 border-primary/30 rounded-br-xl"></div>
+
+            {/* Background accent */}
+            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/5 rounded-lg -z-10"></div>
           </div>
 
           {/* Store Front Image */}
