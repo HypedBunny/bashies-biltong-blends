@@ -8,38 +8,38 @@ const Products = () => {
     {
       id: 1,
       name: "Traditional Biltong",
-      description: "Classic South African beef biltong, perfectly seasoned and dried",
-      image: "/images/products/beefBiltong.jpg"
+      description: "Authentic South African beef biltong, expertly seasoned and naturally air-dried to tender perfection.",
+      image: "/images/products/Beef3.png"
     },
     {
       id: 2,
       name: "Chili Biltong",
-      description: "Spiced with carefully selected chilies for the perfect kick",
+      description: "Bold, fiery flavour with every bite. Perfectly spiced for those who crave the heat!",
       image: "/images/products/chillie.jpg"
     },
     {
       id: 3,
       name: "Droëwors",
-      description: "Our traditional beef droëwors is made from premium cuts of lean beef, expertly spiced and naturally air-dried for the perfect flavour. Every bite delivers that classic South African taste — rich, savoury, and deliciously moreish.",
+      description: "Premium lean beef, expertly spiced and air-dried. Rich, savoury, and utterly moreish!",
       image: "/images/products/droewors.jpg"
     },
     {
       id: 4,
-      name: "Biltong Powder",
-      description: "Ground biltong perfect for seasoning and cooking",
-      image: "/images/products/biltongPowder.jpg"
+      name: "Cherry Chilli Droewors",
+      description: "Sweet meets heat! Fruity cherry sweetness with a spicy kick in every delicious bite.",
+      image: "/images/products/ccdw.jpeg"
     },
     {
       id: 5,
-      name: "Picanha Beef Biltong",
-      description: "Our Geelvet C-grade picanha beef biltong is crafted from the prized rump cap, known for its rich marbling and bold flavour. Naturally air-dried and seasoned with our signature spice blend, it offers a tender, juicy texture and that unmistakable, full-bodied biltong taste South Africans love.",
-      image: "/images/products/premium-biltong.jpg"
+      name: "Geelvet Picanha Beef",
+      description: "Premium picanha rump cap with rich marbling. Air-dried to tender, juicy perfection.",
+      image: "/images/products/Geelvet C-grade picanha2.jpeg"
     },
     {
       id: 6,
-      name: "Variety Pack",
-      description: "Sample our full range with this carefully curated selection",
-      image: "/images/products/variety-pack.jpg"
+      name: "Game Biltong",
+      description: "Exotic game biltong — lean, intensely flavourful, and a true taste of the wild!",
+      image: "/images/products/Kudu.jpeg"
     }
   ];
 
@@ -55,8 +55,11 @@ const Products = () => {
   };
 
   return (
-    <section id="shop" className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+    <section id="shop" className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-muted/20 overflow-hidden">
+      {/* Grid pattern background */}
+      <div className="absolute inset-0 pattern-grid opacity-40" />
+
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 xl:mb-20">
           <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-anton text-primary mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide">
@@ -70,17 +73,21 @@ const Products = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {products.map((product) => (
-            <Card key={product.id} onClick={handleProductClick} className="group cursor-pointer border-border hover:shadow-lg transition-all duration-300 bg-card h-full flex flex-col">
+            <Card key={product.id} onClick={handleProductClick} className="group cursor-pointer border-border hover:shadow-2xl hover:-translate-y-2 hover:border-primary/20 transition-all duration-500 bg-card h-full flex flex-col">
               <CardContent className="p-0 flex flex-col h-full">
                 {/* Product Image */}
-                <div className="aspect-square bg-muted overflow-hidden rounded-t-lg flex-shrink-0">
+                <div className="aspect-square bg-muted overflow-hidden rounded-t-lg flex-shrink-0 relative">
                   {!imageErrors[product.id] ? (
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      onError={() => handleImageError(product.id)}
-                    />
+                    <>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className={`w-full h-full object-cover group-hover:scale-110 group-hover:brightness-105 transition-all duration-500 ${product.id === 1 ? 'rotate-180' : ''}`}
+                        onError={() => handleImageError(product.id)}
+                      />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    </>
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-muted to-muted/60 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                       <p className="text-muted-foreground font-raleway text-center px-2 xs:px-3 sm:px-4 text-xs xs:text-sm">
@@ -108,11 +115,11 @@ const Products = () => {
 
         {/* View All Button */}
         <div className="text-center mt-8 sm:mt-10 md:mt-12 lg:mt-16">
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             variant="outline"
             onClick={handleProductClick}
-            className="px-6 xs:px-8 sm:px-10 md:px-12 py-3 xs:py-4 sm:py-5 md:py-6 text-sm xs:text-base sm:text-lg font-raleway font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors"
+            className="px-6 xs:px-8 sm:px-10 md:px-12 py-3 xs:py-4 sm:py-5 md:py-6 text-sm xs:text-base sm:text-lg font-raleway font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors animate-pulse-cta"
           >
             Online Store Coming Soon
           </Button>

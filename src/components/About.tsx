@@ -1,7 +1,10 @@
 const About = () => {
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative py-16 sm:py-20 lg:py-32 bg-background overflow-hidden">
+      {/* Subtle diagonal lines pattern */}
+      <div className="absolute inset-0 pattern-diagonal-lines opacity-50" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Text Content */}
           <div className="space-y-6 sm:space-y-8">
@@ -38,6 +41,28 @@ const About = () => {
             </div>
           </div>
 
+          {/* Product Images */}
+          <div className="space-y-4">
+            <div className="relative">
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img
+                  src="/images/products/image1.jpeg"
+                  alt="Bashies Biltong premium products"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+                <img
+                  src="/images/products/image2.jpeg"
+                  alt="Bashies Biltong authentic South African biltong"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Store Front Image */}
           {/* <div className="relative">
             <div className="aspect-[4/5] bg-muted rounded-lg overflow-hidden">
@@ -47,7 +72,7 @@ const About = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/5 rounded-lg -z-10"></div>
           </div> */}
         </div>

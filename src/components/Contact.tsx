@@ -246,8 +246,18 @@ const Contact = () => {
                   <div>
                     <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Phone</h3>
                     <p className="text-muted-foreground text-xs sm:text-sm">
-                      +27 66 120 9331<br />
-                      WhatsApp Available
+                      <a href="tel:+27661209331" className="hover:text-primary transition-colors">
+                        +27 66 120 9331
+                      </a>
+                      <br />
+                      <a
+                        href="https://wa.me/27661209331"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-green-600 hover:text-green-700 transition-colors font-medium"
+                      >
+                        WhatsApp Available
+                      </a>
                     </p>
                   </div>
                 </CardContent>
