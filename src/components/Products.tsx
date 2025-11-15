@@ -9,7 +9,7 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Authentic South African beef biltong, expertly seasoned and naturally air-dried to tender perfection.",
-      image: "/images/products/Beef3.png"
+      image: "/images/products/Beef4.png"
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const Products = () => {
     },
     {
       id: 4,
-      name: "Cherry Chilli Droewors",
+      name: "Cherry Chilli Droëwors",
       description: "Sweet meets heat! Fruity cherry sweetness with a spicy kick in every delicious bite.",
       image: "/images/products/ccdw.jpeg"
     },
@@ -33,7 +33,7 @@ const Products = () => {
       id: 5,
       name: "Geelvet Picanha Beef",
       description: "Premium picanha rump cap with rich marbling. Air-dried to tender, juicy perfection.",
-      image: "/images/products/Geelvet C-grade picanha2.jpeg"
+      image: "/images/products/GeelvetC-gradepicanha2.jpeg"
     },
     {
       id: 6,
