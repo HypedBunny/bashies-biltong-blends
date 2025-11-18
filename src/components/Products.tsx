@@ -9,7 +9,7 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Authentic South African beef biltong, expertly seasoned and naturally air-dried to tender perfection.",
-      image: "/images/products/Beef4.png"
+      image: "/images/products/beefnew.jpeg"
     },
     {
       id: 2,
