@@ -230,7 +230,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-raleway font-semibold text-primary mb-2 text-sm sm:text-base">Location</h3>
                     <p className="text-muted-foreground text-sm">
-                      Gabriel Road, Wicklow Rd<br />
+                      Wicklow Rd<br />
                       Plumstead, Cape Town, 7800<br />
                       South Africa
                     </p>
