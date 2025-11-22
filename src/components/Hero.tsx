@@ -31,7 +31,7 @@ const Hero = () => {
 
           {/* Subheadline */}
           <p className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-raleway text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed px-2">
-            Discover the authentic taste of South African biltong and deli delights.
+            Cape Town's premier destination for authentic South African biltong, droëwors, and premium game meats.
           </p>
 
           {/* CTA Button */}

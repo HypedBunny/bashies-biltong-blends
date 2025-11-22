@@ -66,7 +66,7 @@ const Products = () => {
             OUR PRODUCTS
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl font-raleway text-muted-foreground max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
-            Discover our carefully crafted selection of premium biltong and traditional South African delicacies
+            Discover our carefully crafted selection of premium biltong, droëwors, and traditional South African dried meats. Each product is naturally air-dried using authentic methods for superior flavour and tenderness.
           </p>
         </div>
 
