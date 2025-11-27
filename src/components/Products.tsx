@@ -51,7 +51,7 @@ const Products = () => {
   };
 
   const handleProductClick = () => {
-    window.location.href = 'https://shop.bashies.co.za';
+    window.location.href = 'https://shop.bashies.co.za/collections/all';
   };
 
   return (
