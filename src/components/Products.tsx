@@ -51,7 +51,7 @@ const Products = () => {
   };
 
   const handleProductClick = () => {
-    setShowPopup(true);
+    window.location.href = 'https://shop.bashies.co.za';
   };
 
   return (
@@ -121,7 +121,7 @@ const Products = () => {
             onClick={handleProductClick}
             className="px-6 xs:px-8 sm:px-10 md:px-12 py-3 xs:py-4 sm:py-5 md:py-6 text-sm xs:text-base sm:text-lg font-raleway font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors animate-pulse-cta"
           >
-            Online Store Coming Soon
+            Visit Our Shop
           </Button>
         </div>
       </div>
