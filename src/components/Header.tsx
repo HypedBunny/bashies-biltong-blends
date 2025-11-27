@@ -30,6 +30,7 @@ const Header = () => {
   const navigation = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
+    { name: "Products", href: "#shop" },
     { name: "Shop", href: "https://shop.bashies.co.za" },
     { name: "Contact", href: "#contact" },
   ];
