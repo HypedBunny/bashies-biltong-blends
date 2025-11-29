@@ -9,37 +9,43 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Authentic South African beef biltong, expertly seasoned and naturally air-dried to tender perfection.",
-      image: "/images/products/beefnew.jpeg"
+      image: "/images/products/beefnew.jpeg",
+      shopUrl: "https://shop.bashies.co.za/products/beef-biltong-1"
     },
     {
       id: 2,
       name: "Chili Biltong",
       description: "Bold, fiery flavour with every bite. Perfectly spiced for those who crave the heat!",
-      image: "/images/products/chillie.jpg"
+      image: "/images/products/chillie.jpg",
+      shopUrl: "https://shop.bashies.co.za/collections/all"
     },
     {
       id: 3,
       name: "Droëwors",
       description: "Premium lean beef, expertly spiced and air-dried. Rich, savoury, and utterly moreish!",
-      image: "/images/products/droewors.jpg"
+      image: "/images/products/droewors.jpg",
+      shopUrl: "https://shop.bashies.co.za/collections/all"
     },
     {
       id: 4,
       name: "Cherry Chilli Droëwors",
       description: "Sweet meets heat! Fruity cherry sweetness with a spicy kick in every delicious bite.",
-      image: "/images/products/ccdw.jpeg"
+      image: "/images/products/ccdw.jpeg",
+      shopUrl: "https://shop.bashies.co.za/products/cherry-droewors"
     },
     {
       id: 5,
       name: "Geelvet Picanha Beef",
       description: "Premium picanha rump cap with rich marbling. Air-dried to tender, juicy perfection.",
-      image: "/images/products/GeelvetC-gradepicanha2.jpeg"
+      image: "/images/products/GeelvetC-gradepicanha2.jpeg",
+      shopUrl: "https://shop.bashies.co.za/collections/all"
     },
     {
       id: 6,
       name: "Game Biltong",
       description: "Exotic game biltong — lean, intensely flavourful, and a true taste of the wild!",
-      image: "/images/products/Kudu.jpeg"
+      image: "/images/products/Kudu.jpeg",
+      shopUrl: "https://shop.bashies.co.za/collections/all"
     }
   ];
 
@@ -50,8 +56,8 @@ const Products = () => {
     setImageErrors(prev => ({ ...prev, [productId]: true }));
   };
 
-  const handleProductClick = () => {
-    window.location.href = 'https://shop.bashies.co.za/collections/all';
+  const handleProductClick = (shopUrl: string) => {
+    window.location.href = shopUrl;
   };
 
   return (
@@ -73,7 +79,7 @@ const Products = () => {
         {/* Products Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
           {products.map((product) => (
-            <Card key={product.id} onClick={handleProductClick} className="group cursor-pointer border-border hover:shadow-2xl hover:-translate-y-2 hover:border-primary/20 transition-all duration-500 bg-card h-full flex flex-col">
+            <Card key={product.id} onClick={() => handleProductClick(product.shopUrl)} className="group cursor-pointer border-border hover:shadow-2xl hover:-translate-y-2 hover:border-primary/20 transition-all duration-500 bg-card h-full flex flex-col">
               <CardContent className="p-0 flex flex-col h-full">
                 {/* Product Image */}
                 <div className="aspect-square bg-muted overflow-hidden rounded-t-lg flex-shrink-0 relative">
@@ -118,7 +124,7 @@ const Products = () => {
           <Button
             size="lg"
             variant="outline"
-            onClick={handleProductClick}
+            onClick={() => handleProductClick('https://shop.bashies.co.za/collections/all')}
             className="px-6 xs:px-8 sm:px-10 md:px-12 py-3 xs:py-4 sm:py-5 md:py-6 text-sm xs:text-base sm:text-lg font-raleway font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors animate-pulse-cta"
           >
             Visit Our Shop
