@@ -17,14 +17,14 @@ const Products = () => {
       name: "Chili Biltong",
       description: "Bold, fiery flavour with every bite. Perfectly spiced for those who crave the heat!",
       image: "/images/products/chillie.jpg",
-      shopUrl: "https://shop.bashies.co.za/collections/all"
+      shopUrl: "https://shop.bashies.co.za/products/chilli-biltong"
     },
     {
       id: 3,
       name: "Droëwors",
       description: "Premium lean beef, expertly spiced and air-dried. Rich, savoury, and utterly moreish!",
       image: "/images/products/droewors.jpg",
-      shopUrl: "https://shop.bashies.co.za/collections/all"
+      shopUrl: "https://shop.bashies.co.za/products/beef-droewors"
     },
     {
       id: 4,
@@ -37,8 +37,8 @@ const Products = () => {
       id: 5,
       name: "Geelvet Picanha Beef",
       description: "Premium picanha rump cap with rich marbling. Air-dried to tender, juicy perfection.",
-      image: "/images/products/GeelvetC-gradepicanha2.jpeg",
-      shopUrl: "https://shop.bashies.co.za/collections/all"
+      image: "/images/products/PNew.jpeg",
+      shopUrl: "https://shop.bashies.co.za/products/geelvet-picanha-beef"
     },
     {
       id: 6,
