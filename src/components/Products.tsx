@@ -14,14 +14,14 @@ const Products = () => {
     },
     {
       id: 2,
-      name: "Chili Biltong",
+      name: "Chilli Biltong",
       description: "Bold, fiery flavour with every bite. Perfectly spiced for those who crave the heat!",
       image: "/images/products/chillie.jpg",
       shopUrl: "https://shop.bashies.co.za/products/chilli-biltong"
     },
     {
       id: 3,
-      name: "Droëwors",
+      name: "Beef Droëwors",
       description: "Premium lean beef, expertly spiced and air-dried. Rich, savoury, and utterly moreish!",
       image: "/images/products/droewors.jpg",
       shopUrl: "https://shop.bashies.co.za/products/beef-droewors"
