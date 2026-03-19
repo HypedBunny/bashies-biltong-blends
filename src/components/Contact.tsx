@@ -41,11 +41,10 @@ const Contact = () => {
       message: "",
     },
   });
-
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/send-contact-email", {
+      const response = await fetch("http://localhost:3001/api/send-contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -62,7 +61,7 @@ const Contact = () => {
       });
 
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
@@ -145,7 +144,7 @@ const Contact = () => {
 
   const handleSlide = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
-    
+
     setIsTransitioning(true);
     if (direction === 'next') {
       setCurrentReviewIndex((prevIndex) => (prevIndex + 1) % reviews.length);
@@ -162,13 +161,12 @@ const Contact = () => {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center space-x-1">
             {[...Array(5)].map((_, i) => (
-              <Star 
-                key={i} 
-                className={`w-3 h-3 xs:w-4 xs:h-4 ${
-                  i < review.rating 
-                    ? 'text-yellow-400 fill-yellow-400' 
-                    : 'text-gray-300 fill-gray-300'
-                }`}
+              <Star
+                key={i}
+                className={`w-3 h-3 xs:w-4 xs:h-4 ${i < review.rating
+                  ? 'text-yellow-400 fill-yellow-400'
+                  : 'text-gray-300 fill-gray-300'
+                  }`}
               />
             ))}
           </div>
@@ -302,13 +300,13 @@ const Contact = () => {
             <Card className="border-border">
               <CardContent className="p-0">
                 <div className="aspect-video rounded-lg overflow-hidden">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.00739615189!2d18.464363900000002!3d-34.0180211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4321ee3319dd%3A0xe73ebfc0cc42daf1!2sBashies%20Biltong!5e0!3m2!1sen!2sza!4v1754668721671!5m2!1sen!2sza" 
-                    width="100%" 
-                    height="100%" 
-                    style={{border: 0}} 
-                    allowFullScreen 
-                    loading="lazy" 
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.00739615189!2d18.464363900000002!3d-34.0180211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc4321ee3319dd%3A0xe73ebfc0cc42daf1!2sBashies%20Biltong!5e0!3m2!1sen!2sza!4v1754668721671!5m2!1sen!2sza"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Bashies Biltong Location"
                   />
@@ -334,7 +332,7 @@ const Contact = () => {
                           Name
                         </FormLabel>
                         <FormControl>
-                          <Input 
+                          <Input
                             placeholder="Your full name"
                             className="font-raleway"
                             {...field}
@@ -354,8 +352,8 @@ const Contact = () => {
                           Email
                         </FormLabel>
                         <FormControl>
-                          <Input 
-                            type="email" 
+                          <Input
+                            type="email"
                             placeholder="your.email@example.com"
                             className="font-raleway"
                             {...field}
@@ -375,7 +373,7 @@ const Contact = () => {
                           Phone
                         </FormLabel>
                         <FormControl>
-                          <Input 
+                          <Input
                             placeholder="+27 12 345 6789"
                             className="font-raleway"
                             {...field}
@@ -395,7 +393,7 @@ const Contact = () => {
                           Message
                         </FormLabel>
                         <FormControl>
-                          <Textarea 
+                          <Textarea
                             placeholder="Tell us how we can help you..."
                             rows={5}
                             className="font-raleway resize-none"
@@ -407,8 +405,8 @@ const Contact = () => {
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="w-full py-4 sm:py-6 text-base sm:text-lg font-raleway font-medium tracking-wide"
                     disabled={isSubmitting}
                   >
@@ -436,9 +434,9 @@ const Contact = () => {
             {/* Mobile/Tablet Slider */}
             <div className="lg:hidden">
               <div className="relative overflow-hidden px-4 sm:px-6">
-                <div 
+                <div
                   className="flex transition-transform duration-500 ease-in-out"
-                  style={{ 
+                  style={{
                     transform: `translateX(-${currentReviewIndex * 100}%)`,
                     willChange: 'transform'
                   }}
@@ -451,9 +449,9 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-                
+
                 {/* Touch/Swipe overlay */}
-                <div 
+                <div
                   className="absolute inset-0 flex z-10"
                   onTouchStart={(e) => {
                     const startX = e.touches[0].clientX;
@@ -472,29 +470,28 @@ const Contact = () => {
                     document.addEventListener('touchend', handleTouchEnd);
                   }}
                 >
-                  <button 
+                  <button
                     className="w-1/2 h-full opacity-0 hover:opacity-10 hover:bg-black/5 transition-opacity"
                     onClick={() => handleSlide('prev')}
                     aria-label="Previous review"
                   />
-                  <button 
+                  <button
                     className="w-1/2 h-full opacity-0 hover:opacity-10 hover:bg-black/5 transition-opacity"
                     onClick={() => handleSlide('next')}
                     aria-label="Next review"
                   />
                 </div>
               </div>
-              
+
               {/* Dots indicator */}
               <div className="flex justify-center mt-6 space-x-2">
                 {reviews.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
-                      index === currentReviewIndex 
-                        ? 'bg-primary scale-110' 
-                        : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                    }`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${index === currentReviewIndex
+                      ? 'bg-primary scale-110'
+                      : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                      }`}
                     onClick={() => {
                       if (!isTransitioning) {
                         setIsTransitioning(true);

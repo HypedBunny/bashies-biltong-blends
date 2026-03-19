@@ -1,16 +1,22 @@
 /// <reference types="node" />
 import express, { Request, Response } from "express";
+import cors from "cors";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Middleware
+app.use(cors());
 app.use(express.json());
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Serve static files in production
 if (process.env.NODE_ENV === "production") {
