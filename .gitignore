@@ -25,3 +25,12 @@ dist-ssr
 
 # Environment variables
 .env
+
+# OpenTofu / Terraform
+infra/.terraform/
+infra/.terraform.lock.hcl
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/terraform.tfvars
+infra/lambda.zip
+infra/lambda/node_modules/

@@ -1,0 +1,9 @@
+{
+  "name": "bashies-send-contact-email",
+  "version": "1.0.0",
+  "description": "Lambda handler for Bashies contact form emails",
+  "main": "index.js",
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  }
+}

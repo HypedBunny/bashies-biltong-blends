@@ -44,14 +44,14 @@ const Contact = () => {
   const onSubmit = async (values: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("http://localhost:3001/api/send-contact-email", {
+      const response = await fetch("https://dbhm1v89r5.execute-api.af-south-1.amazonaws.com/api/send-contact-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
+        const errorData = await response.json();1
         throw new Error(errorData.error || "Failed to send message");
       }
 
