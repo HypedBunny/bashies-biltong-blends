@@ -170,12 +170,13 @@ exports.handler = async (event) => {
   };
 
   try {
-    const [adminInfo] = await Promise.all([
+    const [adminInfo, userInfo] = await Promise.all([
       transporter.sendMail(mailOptionsAdmin),
       transporter.sendMail(mailOptionsUser),
     ]);
 
     console.log("Admin notified:", adminInfo.messageId);
+    console.log("Auto-responder sent to:", email, userInfo.messageId);
 
     return {
       statusCode: 200,
