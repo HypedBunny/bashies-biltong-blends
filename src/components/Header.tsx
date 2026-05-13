@@ -31,7 +31,6 @@ const Header = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Products", href: "#shop" },
-    { name: "Shop", href: "https://shop.bashies.co.za/collections/all" },
     { name: "Contact", href: "#contact" },
   ];
 
