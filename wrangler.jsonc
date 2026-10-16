@@ -10,5 +10,8 @@
     // Unknown URLs get dist/404.html with a real 404 status (better for SEO
     // than returning the home page with 200).
     "not_found_handling": "404-page"
-  }
+  },
+  // Required by `wrangler preview`, which builds PR previews. Empty because the
+  // site has no bindings or variables; previews reuse the assets settings above.
+  "previews": {}
 }
