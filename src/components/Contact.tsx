@@ -26,6 +26,117 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
+const reviews = [
+  {
+    id: 1,
+    name: "Lee-Ann Läufs",
+    initials: "LL",
+    rating: 5,
+    date: "2 weeks ago",
+    text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
+    verified: true,
+  },
+  {
+    id: 2,
+    name: "Bevan Booysen",
+    initials: "BB",
+    rating: 5,
+    date: "1 month ago",
+    text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
+    verified: true,
+  },
+  {
+    id: 3,
+    name: "Nicole Solomon",
+    initials: "NS",
+    rating: 5,
+    date: "3 weeks ago",
+    text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
+    verified: true,
+  },
+  {
+    id: 4,
+    name: "Lindsay Lange",
+    initials: "LL",
+    rating: 5,
+    date: "2 months ago",
+    text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
+    verified: false,
+  },
+  {
+    id: 5,
+    name: "Yoke Saskia van der Merwe",
+    initials: "YV",
+    rating: 5,
+    date: "1 month ago",
+    text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
+    verified: true,
+  },
+  {
+    id: 6,
+    name: "Terri",
+    initials: "T",
+    rating: 5,
+    date: "3 weeks ago",
+    text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
+    verified: false,
+  }
+];
+
+const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
+  <Card className="border-border w-full shadow-sm hover:shadow-md transition-shadow duration-200">
+    <CardContent className="p-3 xs:p-4 sm:p-5 lg:p-6 space-y-3 xs:space-y-4">
+      {/* Header with rating and source */}
+      <div className="flex items-center justify-between flex-wrap gap-2">
+        <div className="flex items-center space-x-1">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className={`w-3 h-3 xs:w-4 xs:h-4 ${i < review.rating
+                ? 'text-yellow-400 fill-yellow-400'
+                : 'text-gray-300 fill-gray-300'
+                }`}
+            />
+          ))}
+        </div>
+        <div className="flex items-center space-x-1 xs:space-x-2 text-xs text-muted-foreground">
+          {review.verified && (
+            <div className="flex items-center space-x-1 text-green-600">
+              <Shield className="w-3 h-3" />
+              <span className="font-medium hidden xs:inline">Verified</span>
+            </div>
+          )}
+          <span className="text-xs">Google</span>
+        </div>
+      </div>
+
+      {/* Review text */}
+      <blockquote className="text-sm xs:text-sm sm:text-base font-raleway text-foreground leading-relaxed italic min-h-[3rem] xs:min-h-[4rem]">
+        "{review.text}"
+      </blockquote>
+
+      {/* Reviewer info */}
+      <div className="flex items-center justify-between pt-2 xs:pt-3 border-t border-border/50">
+        <div className="flex items-center space-x-2 xs:space-x-3">
+          <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+            <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">
+              {review.initials}
+            </span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs xs:text-sm font-raleway font-medium text-foreground truncate">
+              {review.name}
+            </p>
+          </div>
+        </div>
+        <span className="text-xs text-muted-foreground font-raleway flex-shrink-0">
+          {review.date}
+        </span>
+      </div>
+    </CardContent>
+  </Card>
+);
+
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -51,7 +162,7 @@ const Contact = () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();1
+        const errorData = await response.json();
         throw new Error(errorData.error || "Failed to send message");
       }
 
@@ -72,62 +183,6 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-  const reviews = [
-    {
-      id: 1,
-      name: "Lee-Ann Läufs",
-      initials: "LL",
-      rating: 5,
-      date: "2 weeks ago",
-      text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
-      verified: true,
-    },
-    {
-      id: 2,
-      name: "Bevan Booysen",
-      initials: "BB",
-      rating: 5,
-      date: "1 month ago",
-      text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
-      verified: true,
-    },
-    {
-      id: 3,
-      name: "Nicole Solomon",
-      initials: "NS",
-      rating: 5,
-      date: "3 weeks ago",
-      text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
-      verified: true,
-    },
-    {
-      id: 4,
-      name: "Lindsay Lange",
-      initials: "LL",
-      rating: 5,
-      date: "2 months ago",
-      text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
-      verified: false,
-    },
-    {
-      id: 5,
-      name: "Yoke Saskia van der Merwe",
-      initials: "YV",
-      rating: 5,
-      date: "1 month ago",
-      text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
-      verified: true,
-    },
-    {
-      id: 6,
-      name: "Terri",
-      initials: "T",
-      rating: 5,
-      date: "3 weeks ago",
-      text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
-      verified: false,
-    }
-  ];
 
   // Auto-slide reviews every 4 seconds
   useEffect(() => {
@@ -140,7 +195,7 @@ const Contact = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [reviews.length, isTransitioning]);
+  }, [isTransitioning]);
 
   const handleSlide = (direction: 'next' | 'prev') => {
     if (isTransitioning) return;
@@ -154,59 +209,6 @@ const Contact = () => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
-  const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-    <Card className="border-border w-full shadow-sm hover:shadow-md transition-shadow duration-200">
-      <CardContent className="p-3 xs:p-4 sm:p-5 lg:p-6 space-y-3 xs:space-y-4">
-        {/* Header with rating and source */}
-        <div className="flex items-center justify-between flex-wrap gap-2">
-          <div className="flex items-center space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-3 h-3 xs:w-4 xs:h-4 ${i < review.rating
-                  ? 'text-yellow-400 fill-yellow-400'
-                  : 'text-gray-300 fill-gray-300'
-                  }`}
-              />
-            ))}
-          </div>
-          <div className="flex items-center space-x-1 xs:space-x-2 text-xs text-muted-foreground">
-            {review.verified && (
-              <div className="flex items-center space-x-1 text-green-600">
-                <Shield className="w-3 h-3" />
-                <span className="font-medium hidden xs:inline">Verified</span>
-              </div>
-            )}
-            <span className="text-xs">Google</span>
-          </div>
-        </div>
-
-        {/* Review text */}
-        <blockquote className="text-sm xs:text-sm sm:text-base font-raleway text-foreground leading-relaxed italic min-h-[3rem] xs:min-h-[4rem]">
-          "{review.text}"
-        </blockquote>
-
-        {/* Reviewer info */}
-        <div className="flex items-center justify-between pt-2 xs:pt-3 border-t border-border/50">
-          <div className="flex items-center space-x-2 xs:space-x-3">
-            <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-xs sm:text-sm font-raleway font-semibold text-primary">
-                {review.initials}
-              </span>
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs xs:text-sm font-raleway font-medium text-foreground truncate">
-                {review.name}
-              </p>
-            </div>
-          </div>
-          <span className="text-xs text-muted-foreground font-raleway flex-shrink-0">
-            {review.date}
-          </span>
-        </div>
-      </CardContent>
-    </Card>
-  );
   return (
     <section id="contact" className="py-16 sm:py-20 lg:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

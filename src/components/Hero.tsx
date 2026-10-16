@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
       {/* Animated Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-animated pattern-dots">
+      <div className="absolute inset-0 bg-gradient-animated">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80" />
 
         {/* Floating decorative elements */}

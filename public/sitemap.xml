@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!--
+  bashies.co.za is a single page, so it has one URL. Section anchors (#about,
+  #shop, #contact) are not separate pages to search engines and the online
+  shop (shop.bashies.co.za) is a different host with its own sitemap, so
+  neither belongs here. The image entries help product photos show up in
+  Google Images. Update <lastmod> when the page content changes.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://bashies.co.za/</loc>
-    <lastmod>2025-11-22</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://bashies.co.za/#about</loc>
-    <lastmod>2025-11-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bashies.co.za/#shop</loc>
-    <lastmod>2025-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://shop.bashies.co.za/collections/all</loc>
-    <lastmod>2025-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://bashies.co.za/#contact</loc>
-    <lastmod>2025-11-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/beefnew-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/chillie-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/droewors-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/ccdw-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/PNew-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/Kudu-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://bashies.co.za/images/optimized/about-871.webp</image:loc>
+    </image:image>
   </url>
 </urlset>

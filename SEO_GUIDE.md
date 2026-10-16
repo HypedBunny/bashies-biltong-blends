@@ -8,7 +8,7 @@ This guide outlines the SEO optimizations implemented for Bashies Biltong & Deli
 ### 1. XML Sitemap
 **File:** [public/sitemap.xml](public/sitemap.xml)
 - Tells search engines about all pages on your site
-- Includes priority levels and update frequency
+- Lists the home page plus its product images (section anchors like `#about` are not separate pages, and the shop subdomain has its own sitemap)
 - Submitted to Google Search Console
 
 ### 2. Structured Data (Schema.org)
@@ -34,7 +34,19 @@ This guide outlines the SEO optimizations implemented for Bashies Biltong & Deli
 - Products: Added keywords like "naturally air-dried", "traditional methods"
 - Meta description: More compelling and keyword-rich
 
-### 5. Technical SEO
+### 5. Performance (Core Web Vitals)
+- Home page is prerendered to static HTML at build time, so content shows before JavaScript loads
+- Images served as right-sized WebP (`scripts/optimize-images.py`), lazy-loaded below the fold
+- Fonts self-hosted and preloaded, with metric-matched fallbacks to avoid layout shift
+- Google Analytics loads after the page finishes loading
+
+### 6. AI Search (llms.txt)
+**File:** [public/llms.txt](public/llms.txt)
+- Plain-language summary of the business (products, address, hours, contact) for AI assistants such as ChatGPT, Claude and Perplexity
+- AI crawlers are explicitly allowed in [public/robots.txt](public/robots.txt)
+- Keep it in sync when products, hours or contact details change
+
+### 7. Technical SEO
 - ✅ Canonical URL added
 - ✅ Sitemap link in robots.txt
 - ✅ Mobile-responsive design

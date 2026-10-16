@@ -2,6 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Self-hosted brand fonts (latin + latin-ext subsets of the Google Fonts files).
+   The latin files are preloaded in index.html. */
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/anton-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Anton';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/anton-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/raleway-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/raleway-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Metric-matched fallbacks: if a web font arrives after first paint, the local
+   fallback already occupies the same space, so the swap doesn't shift layout (CLS). */
+@font-face {
+  font-family: 'Anton Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 69.31%;
+  ascent-override: 169.71%;
+  descent-override: 47.48%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Raleway Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 105.22%;
+  ascent-override: 89.34%;
+  descent-override: 22.24%;
+  line-gap-override: 0%;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
@@ -150,16 +204,6 @@ All colors MUST be HSL.
     }
   }
 
-  /* Gradient animation */
-  @keyframes gradient-shift {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
   /* Shimmer effect */
   @keyframes shimmer {
     0% {
@@ -199,8 +243,29 @@ All colors MUST be HSL.
     background-size: 50px 50px;
   }
 
-  /* Animated gradient background */
+  /* Animated gradient background.
+     Pans an oversized gradient layer with transform (GPU-composited) rather than
+     animating background-position, which repaints the whole hero every frame. */
+  @keyframes gradient-pan {
+    0%, 100% {
+      transform: translate(0, -37.5%);
+    }
+    50% {
+      transform: translate(-75%, -37.5%);
+    }
+  }
+
   .bg-gradient-animated {
+    overflow: hidden;
+  }
+
+  .bg-gradient-animated::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400%;
+    height: 400%;
     background: linear-gradient(
       -45deg,
       rgba(0, 0, 0, 0.02),
@@ -208,8 +273,10 @@ All colors MUST be HSL.
       rgba(0, 0, 0, 0.03),
       rgba(0, 0, 0, 0.01)
     );
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+    transform: translate(0, -37.5%);
+    animation: gradient-pan 15s ease infinite;
+    will-change: transform;
+    pointer-events: none;
   }
 
   /* Floating element animation */
@@ -265,5 +332,24 @@ All colors MUST be HSL.
   /* Smooth scroll behavior */
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Respect the OS "reduce motion" setting: stop the decorative looping animations. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .bg-gradient-animated::before,
+    .animate-float,
+    .animate-float-delayed,
+    .animate-pulse-slow,
+    .animate-pulse-cta,
+    .animate-bounce,
+    .animate-ping,
+    .animate-pulse,
+    .text-shimmer {
+      animation: none;
+    }
   }
 }

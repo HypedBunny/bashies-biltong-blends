@@ -18,37 +18,45 @@
     <meta name="geo.position" content="-34.0180211;18.464363900000002" />
     <meta name="ICBM" content="-34.0180211, 18.464363900000002" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGY9TB9FTP"></script>
+    <!-- Google tag (gtag.js) - commands queue in dataLayer immediately; the library itself
+         loads after the page has finished loading so it doesn't compete with first render. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-WGY9TB9FTP');
+
+      window.addEventListener('load', function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-WGY9TB9FTP';
+        document.head.appendChild(s);
+      });
     </script>
 
     <!-- Favicon - Bashies Logo -->
-    <link rel="icon" type="image/png" href="/logoBlack.png" media="(prefers-color-scheme: light)" />
-    <link rel="apple-touch-icon" href="/logoBlack.png" media="(prefers-color-scheme: light)" />
-    <link rel="icon" type="image/png" href="/logoWhite.png" media="(prefers-color-scheme: dark)" />
-    <link rel="apple-touch-icon" href="/logoWhite.png" media="(prefers-color-scheme: dark)" />
-    <link rel="icon" type="image/png" href="/logoBlack.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/optimized/favicon-black-192.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/optimized/favicon-white-192.png" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/optimized/favicon-black-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/optimized/apple-touch-icon.png" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&display=swap" rel="stylesheet">
+    <!-- Fonts (self-hosted, declared in src/index.css) - preloaded so text renders in
+         the brand fonts on first paint instead of swapping and shifting layout -->
+    <link rel="preload" href="/fonts/raleway-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/anton-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <meta name="theme-color" content="#000000" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bashies.co.za/" />
     <meta property="og:title" content="Bashies Biltong & Deli | Premium South African Biltong in Cape Town" />
     <meta property="og:description" content="Discover authentic South African biltong, droëwors, and premium game meats at Bashies in Plumstead, Cape Town. Family-owned, expertly crafted, naturally air-dried." />
-    <meta property="og:image" content="https://bashies.co.za/logoBlack.png" />
+    <meta property="og:image" content="https://bashies.co.za/images/optimized/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bashies Biltong and Deli logo" />
     <meta property="og:locale" content="en_ZA" />
     <meta property="og:site_name" content="Bashies Biltong & Deli" />
 
@@ -57,7 +65,7 @@
     <meta name="twitter:url" content="https://bashies.co.za/" />
     <meta name="twitter:title" content="Bashies Biltong & Deli | Premium South African Biltong" />
     <meta name="twitter:description" content="Discover authentic South African biltong, droëwors, and premium game meats at Bashies in Plumstead, Cape Town." />
-    <meta name="twitter:image" content="https://bashies.co.za/logoBlack.png" />
+    <meta name="twitter:image" content="https://bashies.co.za/images/optimized/og-image.jpg" />
 
     <!-- Business Contact -->
     <meta name="contact" content="hello@bashies.co.za" />
@@ -66,8 +74,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://bashies.co.za/" />
 
-    <!-- Sitemap -->
+    <!-- Sitemap & LLM-friendly site summary -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="text/markdown" href="/llms.txt" title="llms.txt" />
 
     <!-- Structured Data - LocalBusiness -->
     <script type="application/ld+json">
@@ -83,9 +92,10 @@
       "email": "hello@bashies.co.za",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Plumstead",
+        "streetAddress": "Wicklow Rd, Plumstead",
         "addressLocality": "Cape Town",
         "addressRegion": "Western Cape",
+        "postalCode": "7800",
         "addressCountry": "ZA"
       },
       "geo": {
@@ -93,6 +103,16 @@
         "latitude": -34.0180211,
         "longitude": 18.464363900000002
       },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "18:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "09:00", "closes": "14:00" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/bashies_biltong/",
+        "https://www.facebook.com/bashiesbeef/",
+        "https://www.tiktok.com/@bashies.biltong"
+      ],
       "priceRange": "$$",
       "servesCuisine": "South African"
     }

@@ -46,7 +46,13 @@ const About = () => {
             {/* Main image container */}
             <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden shadow-2xl">
               <img
-                src="/images/products/image1.jpeg"
+                src="/images/optimized/about-871.webp"
+                srcSet="/images/optimized/about-480.webp 480w, /images/optimized/about-871.webp 871w"
+                sizes="(min-width: 1024px) 560px, 100vw"
+                width={871}
+                height={569}
+                loading="lazy"
+                decoding="async"
                 alt="Bashies Biltong premium products"
                 className="w-full h-full object-cover"
               />
