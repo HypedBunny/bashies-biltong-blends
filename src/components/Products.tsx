@@ -7,37 +7,37 @@ const Products = () => {
       id: 1,
       name: "Traditional Biltong",
       description: "Authentic South African beef biltong, expertly seasoned and naturally air-dried to tender perfection.",
-      image: "/images/products/beefnew.jpeg"
+      image: "beefnew"
     },
     {
       id: 2,
       name: "Chilli Biltong",
       description: "Bold, fiery flavour with every bite. Perfectly spiced for those who crave the heat!",
-      image: "/images/products/chillie.jpg"
+      image: "chillie"
     },
     {
       id: 3,
       name: "Beef Droëwors",
       description: "Premium lean beef, expertly spiced and air-dried. Rich, savoury, and utterly moreish!",
-      image: "/images/products/droewors.jpg"
+      image: "droewors"
     },
     {
       id: 4,
       name: "Cherry Chilli Droëwors",
       description: "Sweet meets heat! Fruity cherry sweetness with a spicy kick in every delicious bite.",
-      image: "/images/products/ccdw.jpeg"
+      image: "ccdw"
     },
     {
       id: 5,
       name: "Geelvet Picanha Beef",
       description: "Premium picanha rump cap with rich marbling. Air-dried to tender, juicy perfection.",
-      image: "/images/products/PNew.jpeg"
+      image: "PNew"
     },
     {
       id: 6,
       name: "Game Biltong",
       description: "Exotic game biltong — lean, intensely flavourful, and a true taste of the wild!",
-      image: "/images/products/Kudu.jpeg"
+      image: "Kudu"
     }
   ];
 
@@ -73,8 +73,14 @@ const Products = () => {
                   {!imageErrors[product.id] ? (
                     <>
                       <img
-                        src={product.image}
-                        alt={product.name}
+                        src={`/images/optimized/${product.image}-600.webp`}
+                        srcSet={`/images/optimized/${product.image}-400.webp 400w, /images/optimized/${product.image}-600.webp 600w, /images/optimized/${product.image}-800.webp 800w`}
+                        sizes="(min-width: 1280px) 384px, (min-width: 1024px) 31vw, 48vw"
+                        width={600}
+                        height={600}
+                        loading="lazy"
+                        decoding="async"
+                        alt={`${product.name} - Bashies Biltong & Deli, Cape Town`}
                         className={`w-full h-full object-cover group-hover:scale-110 group-hover:brightness-105 transition-all duration-500 ${product.id === 1 ? 'rotate-180' : ''}`}
                         onError={() => handleImageError(product.id)}
                       />

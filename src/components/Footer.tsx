@@ -26,10 +26,14 @@ const Footer = () => {
         <div className="text-center space-y-8">
           {/* Logo */}
           <div>
-            <img 
-              src="/bannerWhite.png" 
-              alt="Bashies Deli & Biltong" 
-              className="h-16 lg:h-20 mx-auto"
+            <img
+              src="/images/optimized/banner-white-720.webp"
+              width={720}
+              height={240}
+              loading="lazy"
+              decoding="async"
+              alt="Bashies Deli & Biltong"
+              className="h-16 lg:h-20 w-auto mx-auto"
             />
           </div>
 
@@ -85,7 +89,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="pt-8 border-t border-primary-foreground/20">
-            <p className="text-sm font-raleway text-primary-foreground/60">
+            <p className="text-sm font-raleway text-primary-foreground/60" suppressHydrationWarning>
               © {new Date().getFullYear()} Bashies Deli & Biltong. All rights reserved.
             </p>
           </div>

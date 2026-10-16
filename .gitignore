@@ -34,3 +34,6 @@ infra/terraform.tfstate.backup
 infra/terraform.tfvars
 infra/lambda.zip
 infra/lambda/node_modules/
+
+# Cloudflare Wrangler local state
+.wrangler/

@@ -1,0 +1,14 @@
+// Cloudflare Workers config: serves the Vite build output (dist/) as a static site.
+// Deployed by Workers Builds on every push to main - see DEPLOYMENT.md.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Must match the Worker name in the Cloudflare dashboard, or the build fails.
+  "name": "bashies-biltong-blends",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // Unknown URLs get dist/404.html with a real 404 status (better for SEO
+    // than returning the home page with 200).
+    "not_found_handling": "404-page"
+  }
+}

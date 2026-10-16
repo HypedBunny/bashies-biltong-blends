@@ -27,8 +27,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'anton': ['Anton', 'sans-serif'],
-				'raleway': ['Raleway', 'sans-serif'],
+				'anton': ['Anton', 'Anton Fallback', 'sans-serif'],
+				'raleway': ['Raleway', 'Raleway Fallback', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

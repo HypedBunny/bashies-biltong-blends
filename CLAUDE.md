@@ -5,10 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 - `npm run dev` - Start development server with auto-reloading (runs on port 8080)
-- `npm run build` - Production build
+- `npm run build` - Production build: client bundle, then an SSR build of `src/entry-server.tsx` that `scripts/prerender.mjs` uses to prerender `/` into `dist/index.html` (`src/main.tsx` hydrates it)
 - `npm run build:dev` - Development build  
 - `npm run lint` - Run ESLint for code linting
 - `npm run preview` - Preview production build
+- `npm run preview:cf` - Build, then serve `dist/` locally with Cloudflare's runtime (`wrangler dev`, port 8787)
+- `npm run deploy` - Build and deploy to Cloudflare from your machine (normally Workers Builds deploys on push to `main`)
+- `python3 scripts/optimize-images.py` - Regenerate the resized WebP images, favicons and social card in `public/images/optimized/` (needs Pillow); run after adding or replacing a photo
 
 ## Project Architecture
 
@@ -47,10 +50,15 @@ This is a **Bashies Biltong & Deli** business website built with:
 ### Key Technical Details
 
 - **Path Aliases**: `@/*` maps to `src/*` for clean imports
+- **Prerendering**: Components must render identically on the server and in the browser (no `window`/`document` access during render, only in effects/handlers)
+- **Images**: Pages reference the optimized variants in `public/images/optimized/`, not the full-size originals
+- **Fonts**: Anton and Raleway are self-hosted in `public/fonts/` (declared in `src/index.css`, preloaded in `index.html`)
+- **SEO files**: `public/robots.txt`, `public/sitemap.xml`, `public/llms.txt`
 - **TypeScript**: Lenient configuration (allows implicit any, unused vars disabled)
 - **ESLint**: React-specific rules with TypeScript support
 - **No Testing Framework**: Currently no test setup configured
-- **Deployment**: Designed for Lovable platform integration
+- **Deployment**: Cloudflare Workers static assets, built from GitHub by Workers Builds on push to `main` (`wrangler.jsonc`, `public/_headers`, setup steps in `DEPLOYMENT.md`). Unknown URLs serve `dist/404.html` with a 404 status
+- **Package manager**: npm (`package-lock.json`); don't add other lockfiles, as Cloudflare's build picks its installer from the lockfile
 
 ### Business Context
 

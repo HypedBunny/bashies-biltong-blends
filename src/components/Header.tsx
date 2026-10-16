@@ -23,7 +23,7 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -47,7 +47,9 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center space-x-2 lg:space-x-3">
             <img
-              src="/logoBlack.png"
+              src="/images/optimized/logo-black-128.webp"
+              width={128}
+              height={128}
               alt="Bashies Logo"
               className="h-8 w-8 lg:h-10 lg:w-10 object-cover rounded-full"
             />
