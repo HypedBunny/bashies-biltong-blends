@@ -20,6 +20,10 @@ if (!template.includes(marker)) {
   throw new Error(`prerender: ${marker} not found in dist/index.html`);
 }
 
+// Unprerendered shell for unknown URLs: Cloudflare serves it with a 404 status
+// (wrangler.jsonc "not_found_handling") and the app renders its NotFound page.
+await fs.writeFile(path.join(root, "dist", "404.html"), template);
+
 const appHtml = render("/");
 // Function replacer so "$" sequences in the markup are inserted literally.
 await fs.writeFile(indexPath, template.replace(marker, () => `<div id="root">${appHtml}</div>`));

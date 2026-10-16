@@ -9,6 +9,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build:dev` - Development build  
 - `npm run lint` - Run ESLint for code linting
 - `npm run preview` - Preview production build
+- `npm run preview:cf` - Build, then serve `dist/` locally with Cloudflare's runtime (`wrangler dev`, port 8787)
+- `npm run deploy` - Build and deploy to Cloudflare from your machine (normally Workers Builds deploys on push to `main`)
 - `python3 scripts/optimize-images.py` - Regenerate the resized WebP images, favicons and social card in `public/images/optimized/` (needs Pillow); run after adding or replacing a photo
 
 ## Project Architecture
@@ -55,7 +57,8 @@ This is a **Bashies Biltong & Deli** business website built with:
 - **TypeScript**: Lenient configuration (allows implicit any, unused vars disabled)
 - **ESLint**: React-specific rules with TypeScript support
 - **No Testing Framework**: Currently no test setup configured
-- **Deployment**: Designed for Lovable platform integration
+- **Deployment**: Cloudflare Workers static assets, built from GitHub by Workers Builds on push to `main` (`wrangler.jsonc`, `public/_headers`, setup steps in `DEPLOYMENT.md`). Unknown URLs serve `dist/404.html` with a 404 status
+- **Package manager**: npm (`package-lock.json`); don't add other lockfiles, as Cloudflare's build picks its installer from the lockfile
 
 ### Business Context
 
