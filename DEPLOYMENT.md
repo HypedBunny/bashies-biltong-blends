@@ -55,6 +55,35 @@ The site runs on **Cloudflare Workers** as a static site: Cloudflare serves the
 - **Deploy from your machine** (not needed with GitHub connected): `npx wrangler login`,
   then `npm run deploy`.
 
+## Google reviews
+
+Each build fetches the shop's Google reviews (`scripts/fetch-google-reviews.mjs`)
+and the "What our customers say" section shows the 5-star ones, newest first.
+Saved reviews in `src/data/reviews.ts` fill the remaining slots, and they're
+also what the site shows when there's no API key or Google can't be reached.
+Google's API only returns the 5 reviews it rates most relevant, so a brand-new
+review may not appear straight away.
+
+To switch it on:
+
+1. In [Google Cloud](https://console.cloud.google.com/), create or pick a project
+   with billing enabled, and enable **Places API (New)**.
+2. Under **APIs & Services** → **Credentials**, create an API key and restrict it
+   to **Places API (New)**. It's only used during Cloudflare builds, never in the
+   browser.
+3. In Cloudflare, go to the Worker → **Settings** → **Build** → **Variables and
+   secrets** and add `GOOGLE_PLACES_API_KEY` (as a secret). Then trigger a build.
+   The build log prints the matched business and its place ID. Add that as
+   `GOOGLE_PLACE_ID` so later builds skip the lookup.
+4. To refresh daily: under **Settings** → **Builds** → **Deploy Hooks**, create a
+   hook for `main`. In GitHub, go to the repo → **Settings** → **Secrets and
+   variables** → **Actions** and save the hook URL as `CLOUDFLARE_DEPLOY_HOOK_URL`.
+   `.github/workflows/refresh-reviews.yml` then rebuilds every morning (it can
+   also be run by hand from the **Actions** tab).
+
+A daily refresh is one Place Details request per build (about 30 a month),
+which should stay within Google's monthly free usage.
+
 ## What the config does
 
 - `wrangler.jsonc`: serves `dist/`. Unknown URLs return `dist/404.html` with a real

@@ -54,6 +54,7 @@ This is a **Bashies Biltong & Deli** business website built with:
 - **Images**: Pages reference the optimized variants in `public/images/optimized/`, not the full-size originals
 - **Fonts**: Anton and Raleway are self-hosted in `public/fonts/` (declared in `src/index.css`, preloaded in `index.html`)
 - **SEO files**: `public/robots.txt`, `public/sitemap.xml`, `public/llms.txt`
+- **Reviews**: `src/data/reviews.ts` holds saved reviews; `scripts/fetch-google-reviews.mjs` runs first in `npm run build` and, when `GOOGLE_PLACES_API_KEY` is set, writes 5-star Google reviews to the gitignored `src/data/google-reviews.generated.json`, which are shown first. A daily GitHub Actions workflow triggers a rebuild via a Cloudflare deploy hook
 - **TypeScript**: Lenient configuration (allows implicit any, unused vars disabled)
 - **ESLint**: React-specific rules with TypeScript support
 - **No Testing Framework**: Currently no test setup configured

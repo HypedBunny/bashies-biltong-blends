@@ -1,0 +1,26 @@
+# Rebuilds the site every day so the Google reviews section stays current
+# (reviews are fetched at build time by scripts/fetch-google-reviews.mjs).
+# Needs a Cloudflare Deploy Hook URL saved as the repository secret
+# CLOUDFLARE_DEPLOY_HOOK_URL (see DEPLOYMENT.md); does nothing until it's set.
+name: Refresh Google reviews
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # daily at 06:17 South African time
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger a Cloudflare build of main
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "CLOUDFLARE_DEPLOY_HOOK_URL secret is not set; skipping."
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$DEPLOY_HOOK_URL"

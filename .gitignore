@@ -37,3 +37,6 @@ infra/lambda/node_modules/
 
 # Cloudflare Wrangler local state
 .wrangler/
+
+# Google reviews fetched at build time (scripts/fetch-google-reviews.mjs)
+src/data/google-reviews.generated.json
