@@ -14,7 +14,7 @@ Re-run after adding or replacing a photo:
 
 from pathlib import Path
 
-from PIL import Image, ImageOps
+from PIL import Image, ImageDraw, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
 PUBLIC = ROOT / "public"
@@ -89,9 +89,22 @@ def main() -> None:
         print(f"{(OUT / out).relative_to(ROOT)}  192x192  {(OUT / out).stat().st_size // 1024} KB")
 
     # iOS fills transparency with black, so the touch icon gets a white background.
+    # Lives at the site root, where iOS and link-preview crawlers look by default.
     touch = on_white(load("logoBlack.png").resize((180, 180), Image.LANCZOS))
-    touch.save(OUT / "apple-touch-icon.png", optimize=True)
-    print(f"{(OUT / 'apple-touch-icon.png').relative_to(ROOT)}  180x180")
+    touch.save(PUBLIC / "apple-touch-icon.png", optimize=True)
+    print(f"{(PUBLIC / 'apple-touch-icon.png').relative_to(ROOT)}  180x180")
+
+    # /favicon.ico is requested automatically by browsers, search engines and
+    # bookmarks regardless of the <link rel="icon"> tags, and can't switch with
+    # dark mode, so the black logo sits on a white circle to stay visible.
+    size = 256
+    badge = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    ImageDraw.Draw(badge).ellipse((0, 0, size - 1, size - 1), fill="white")
+    inner = round(size * 0.84)
+    logo = load("logoBlack.png").resize((inner, inner), Image.LANCZOS)
+    badge.alpha_composite(logo, ((size - inner) // 2, (size - inner) // 2))
+    badge.save(PUBLIC / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+    print(f"{(PUBLIC / 'favicon.ico').relative_to(ROOT)}  16/32/48  {(PUBLIC / 'favicon.ico').stat().st_size // 1024} KB")
 
     # 1200x630 social sharing card (Open Graph / Twitter).
     card = Image.new("RGB", (1200, 630), "white")
