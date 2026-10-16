@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { reviews, googleReviewsUrl, type Review } from "@/data/reviews";
 import {
   Form,
   FormControl,
@@ -26,64 +27,8 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-const reviews = [
-  {
-    id: 1,
-    name: "Lee-Ann Läufs",
-    initials: "LL",
-    rating: 5,
-    date: "2 weeks ago",
-    text: "The most delicious biltong we have ever had. We also bought yogurt covered dates, chocolate nuts, fruit cubes and more. We make a point to drive passed all other biltong shops just to go there. So impressed.",
-    verified: true,
-  },
-  {
-    id: 2,
-    name: "Bevan Booysen",
-    initials: "BB",
-    rating: 5,
-    date: "1 month ago",
-    text: "The biltong is fantastic! Especially the Wagyu beef biltong. They have Wagyu burgers as well. Was told to braai the Wagyu burgers from frozen and I was skeptical. But WOW! Came out perfectly from frozen onto the braai. Try all the biltong and the nuts. Pricing is good and service is great.",
-    verified: true,
-  },
-  {
-    id: 3,
-    name: "Nicole Solomon",
-    initials: "NS",
-    rating: 5,
-    date: "3 weeks ago",
-    text: "Great service. Best biltong. Lovely variety and the owner was so hands on. My new favourite biltong shop.",
-    verified: true,
-  },
-  {
-    id: 4,
-    name: "Lindsay Lange",
-    initials: "LL",
-    rating: 5,
-    date: "2 months ago",
-    text: "OMW! Love their biltong! We've tried their chilli beef biltong, fatty beef biltong and droewors. All Deeee-licious!",
-    verified: false,
-  },
-  {
-    id: 5,
-    name: "Yoke Saskia van der Merwe",
-    initials: "YV",
-    rating: 5,
-    date: "1 month ago",
-    text: "I just love Bashies Biltong. Their Pecanha Biltong is my favourite.",
-    verified: true,
-  },
-  {
-    id: 6,
-    name: "Terri",
-    initials: "T",
-    rating: 5,
-    date: "3 weeks ago",
-    text: "Bashies has a wide variety of delicious biltong, and their service is always fantastic!",
-    verified: false,
-  }
-];
 
-const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
+const ReviewCard = ({ review }: { review: Review }) => (
   <Card className="border-border w-full shadow-sm hover:shadow-md transition-shadow duration-200">
     <CardContent className="p-3 xs:p-4 sm:p-5 lg:p-6 space-y-3 xs:space-y-4">
       {/* Header with rating and source */}
@@ -125,13 +70,26 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-xs xs:text-sm font-raleway font-medium text-foreground truncate">
-              {review.name}
+              {review.profileUrl ? (
+                <a
+                  href={review.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  {review.name}
+                </a>
+              ) : (
+                review.name
+              )}
             </p>
           </div>
         </div>
-        <span className="text-xs text-muted-foreground font-raleway flex-shrink-0">
-          {review.date}
-        </span>
+        {review.date && (
+          <span className="text-xs text-muted-foreground font-raleway flex-shrink-0">
+            {review.date}
+          </span>
+        )}
       </div>
     </CardContent>
   </Card>
@@ -514,6 +472,19 @@ const Contact = () => {
               ))}
             </div>
           </div>
+
+          {googleReviewsUrl && (
+            <p className="mt-8 text-center text-sm font-raleway text-muted-foreground">
+              <a
+                href={googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4 hover:text-primary transition-colors"
+              >
+                Read all our reviews on Google
+              </a>
+            </p>
+          )}
         </div>
       </div>
     </section>
