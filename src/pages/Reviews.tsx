@@ -95,18 +95,17 @@ const Reviews = () => {
             {!place && !failed && (
               <p className="font-raleway text-muted-foreground">Loading reviews...</p>
             )}
+            {/* Also shown while GOOGLE_PLACES_API_KEY is not set, so keep it neutral. */}
             {failed && (
-              <p className="font-raleway text-muted-foreground">
-                We can't load the reviews right now.{" "}
+              <p className="font-raleway text-center">
                 <a
                   href={GOOGLE_MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary underline hover:no-underline"
+                  className="text-sm font-medium text-primary underline hover:no-underline"
                 >
-                  Read them on Google Maps
+                  Read our reviews on Google Maps
                 </a>
-                .
               </p>
             )}
 
