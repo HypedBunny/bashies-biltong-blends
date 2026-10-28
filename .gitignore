@@ -37,3 +37,6 @@ infra/lambda/node_modules/
 
 # Cloudflare Wrangler local state
 .wrangler/
+
+# Local secrets for `wrangler dev` (npm run preview:cf)
+.dev.vars

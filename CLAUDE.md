@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 - `npm run dev` - Start development server with auto-reloading (runs on port 8080)
-- `npm run build` - Production build: client bundle, then an SSR build of `src/entry-server.tsx` that `scripts/prerender.mjs` uses to prerender `/` into `dist/index.html` (`src/main.tsx` hydrates it)
+- `npm run build` - Production build: client bundle, then an SSR build of `src/entry-server.tsx` that `scripts/prerender.mjs` uses to prerender `/` into `dist/index.html` and `/reviews` into `dist/reviews.html` (`src/main.tsx` hydrates them)
 - `npm run build:dev` - Development build  
 - `npm run lint` - Run ESLint for code linting
 - `npm run preview` - Preview production build
@@ -33,10 +33,12 @@ This is a **Bashies Biltong & Deli** business website built with:
 - Contact (contact form)
 - Footer
 
+**Reviews page** (`src/pages/Reviews.tsx`, `/reviews`): a "Write a Google review" button and the live Google rating and reviews from `/api/reviews`. That route is the only server code: `worker/index.ts` calls the Google Places API (New) with the `GOOGLE_PLACES_API_KEY` secret (setup in `DEPLOYMENT.md`). The Place ID and review links are in `src/lib/google.ts`. A new route must also be added to the `routes` list in `scripts/prerender.mjs`, or it serves a 404 status.
+
 **Component Organization**:
 - `src/components/` - Page section components (Header, Hero, About, Products, Contact, Footer)
 - `src/components/ui/` - Reusable shadcn/ui components
-- `src/pages/` - Route-level page components (Index, NotFound)
+- `src/pages/` - Route-level page components (Index, Reviews, NotFound)
 - `src/hooks/` - Custom React hooks
 - `src/lib/` - Utilities (mainly `utils.ts` for class merging)
 
@@ -57,7 +59,7 @@ This is a **Bashies Biltong & Deli** business website built with:
 - **TypeScript**: Lenient configuration (allows implicit any, unused vars disabled)
 - **ESLint**: React-specific rules with TypeScript support
 - **No Testing Framework**: Currently no test setup configured
-- **Deployment**: Cloudflare Workers static assets, built from GitHub by Workers Builds on push to `main` (`wrangler.jsonc`, `public/_headers`, setup steps in `DEPLOYMENT.md`). Unknown URLs serve `dist/404.html` with a 404 status
+- **Deployment**: Cloudflare Workers static assets, built from GitHub by Workers Builds on push to `main` (`wrangler.jsonc`, `public/_headers`, setup steps in `DEPLOYMENT.md`). Unknown URLs serve `dist/404.html` with a 404 status. Only `/api/*` runs `worker/index.ts`
 - **Package manager**: npm (`package-lock.json`); don't add other lockfiles, as Cloudflare's build picks its installer from the lockfile
 
 ### Business Context

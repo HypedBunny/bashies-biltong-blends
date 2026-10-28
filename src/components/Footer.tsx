@@ -14,10 +14,12 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 
 const Footer = () => {
   const navigation = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Shop", href: "#shop" },
-    { name: "Contact", href: "#contact" },
+    // "/#..." so the links also work from /reviews.
+    { name: "Home", href: "/#home" },
+    { name: "About", href: "/#about" },
+    { name: "Shop", href: "/#shop" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Review us", href: "/reviews" },
   ];
 
   return (
@@ -38,7 +40,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-wrap justify-center space-x-8">
+          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2">
             {navigation.map((item) => (
               <a
                 key={item.name}

@@ -10,10 +10,10 @@ const app = (
   </BrowserRouter>
 );
 
-// `npm run build` prerenders the home page into index.html (scripts/prerender.mjs),
-// so the content is visible before this script loads. Hydrate that markup on "/";
-// on any other path (or a build without prerendering) render from scratch.
-if (container.hasChildNodes() && window.location.pathname === "/") {
+// `npm run build` prerenders "/" and "/reviews" (scripts/prerender.mjs), so the
+// content is visible before this script loads. Hydrate that markup; on the 404
+// page (or a build without prerendering) the root is empty, so render from scratch.
+if (container.hasChildNodes()) {
   hydrateRoot(container, app);
 } else {
   container.textContent = "";

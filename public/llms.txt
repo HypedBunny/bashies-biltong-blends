@@ -36,6 +36,7 @@ Customer reviews on the site also mention Wagyu beef biltong, fatty beef biltong
 - [Our story](https://bashies.co.za/#about): How the family business started and grew.
 - [Products](https://bashies.co.za/#shop): The biltong, droëwors and game meat range.
 - [Visit us and contact](https://bashies.co.za/#contact): Address, map, hours, phone, email, contact form and customer reviews.
+- [Reviews](https://bashies.co.za/reviews): The latest Google reviews, the overall Google rating, and a link to write a Google review.
 - [Online shop](https://shop.bashies.co.za/collections/all): Buy Bashies products online.
 
 ## Social

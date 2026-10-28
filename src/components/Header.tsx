@@ -28,10 +28,12 @@ const Header = () => {
   }, []);
 
   const navigation = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Products", href: "#shop" },
-    { name: "Contact", href: "#contact" },
+    // "/#..." so the links also work from /reviews.
+    { name: "Home", href: "/#home" },
+    { name: "About", href: "/#about" },
+    { name: "Products", href: "/#shop" },
+    { name: "Contact", href: "/#contact" },
+    { name: "Reviews", href: "/reviews" },
   ];
 
   return (

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  bashies.co.za is a single page, so it has one URL. Section anchors (#about,
+  bashies.co.za has two pages: the home page and /reviews. Section anchors (#about,
   #shop, #contact) are not separate pages to search engines and the online
   shop (shop.bashies.co.za) is a different host with its own sitemap, so
   neither belongs here. The image entries help product photos show up in
@@ -34,5 +34,11 @@
     <image:image>
       <image:loc>https://bashies.co.za/images/optimized/about-871.webp</image:loc>
     </image:image>
+  </url>
+  <url>
+    <loc>https://bashies.co.za/reviews</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
