@@ -5,10 +5,20 @@
   // Must match the Worker name in the Cloudflare dashboard, or the build fails.
   "name": "bashies-biltong-blends",
   "compatibility_date": "2026-10-01",
+  // Answers /api/reviews (live Google reviews). Needs the GOOGLE_PLACES_API_KEY
+  // secret - see DEPLOYMENT.md.
+  "main": "worker/index.ts",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    // Only API calls run the Worker; pages and files are served straight from dist/.
+    "run_worker_first": ["/api/*"],
     // Unknown URLs get dist/404.html with a real 404 status (better for SEO
     // than returning the home page with 200).
     "not_found_handling": "404-page"
-  }
+  },
+  "observability": { "enabled": true },
+  // Required by `wrangler preview`, which builds PR previews. Empty because the
+  // assets settings above also apply to previews.
+  "previews": {}
 }

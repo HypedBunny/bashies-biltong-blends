@@ -43,6 +43,42 @@ The site runs on **Cloudflare Workers** as a static site: Cloudflare serves the
    "Redirect from WWW to root" template, so search engines see one canonical address.
 4. Once bashies.co.za loads from Cloudflare, retire the old hosting.
 
+## Live Google reviews (`/reviews`)
+
+The `/reviews` page shows the Google rating and up to 5 Google reviews. Google
+chooses the 5 by relevance; it has no "newest first" option. `worker/index.ts`
+gets them from the Google Places API (New) on every visit, because Google's
+terms do not allow caching them. The "Write a Google review" button does not
+use the API, so it works without a key. The Place ID is in `src/lib/google.ts`.
+
+Cost: Google gives 1,000 free requests a month (Place Details Enterprise +
+Atmosphere SKU), then charges US$25 for each 1,000. One visit to `/reviews`
+is one request.
+
+One-time setup:
+
+1. Open the [Google Cloud console](https://console.cloud.google.com/). Create a
+   project and attach a billing account. Google requires billing, even for the
+   free requests.
+2. Go to **APIs & Services** → **Library**. Enable **Places API (New)**.
+3. Go to **APIs & Services** → **Credentials** → **Create credentials** → **API key**.
+   Edit the key: under **API restrictions**, select **Restrict key** and allow
+   only **Places API (New)**.
+4. Go to **Billing** → **Budgets & alerts**. Create a budget of US$1 with an
+   email alert. Places API (New) has no daily cap, so this alert is the guard.
+5. In Cloudflare: the Worker → **Settings** → **Variables and Secrets** → **Add**.
+   Set the type to **Secret**, the name to `GOOGLE_PLACES_API_KEY`, and paste the key.
+   (Or run `npx wrangler secret put GOOGLE_PLACES_API_KEY`.) Use a secret, not
+   a plain variable: each deploy replaces plain variables with `wrangler.jsonc`.
+6. Open https://bashies.co.za/reviews and check that the reviews show.
+
+If the key is missing or Google returns an error, the page shows a link to the
+reviews on Google Maps, and the Worker logs the error (Worker → **Logs**).
+
+To test locally: put `GOOGLE_PLACES_API_KEY=<key>` in `.dev.vars` (git ignores
+it) and run `npm run preview:cf`. `npm run dev` has no Worker, so `/reviews`
+shows the fallback link there.
+
 ## Day to day
 
 - **Deploy:** merge or push to `main`. Watch progress under the Worker's
@@ -58,7 +94,8 @@ The site runs on **Cloudflare Workers** as a static site: Cloudflare serves the
 ## What the config does
 
 - `wrangler.jsonc`: serves `dist/`. Unknown URLs return `dist/404.html` with a real
-  404 status, and the app shows its "Page not found" screen.
+  404 status, and the app shows its "Page not found" screen. Only `/api/*`
+  requests run `worker/index.ts` (the live Google reviews).
 - `public/_headers`: security headers on every response. Hashed JS/CSS in
   `/assets/` is cached for a year, fonts and images for 30 days, and HTML is
   revalidated on every visit so new deploys show up immediately.

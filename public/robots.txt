@@ -4,6 +4,8 @@
 
 User-agent: *
 Allow: /
+# /api/reviews costs a paid Google request on every call, so keep bots off it.
+Disallow: /api/
 
 # AI assistants and LLM crawlers - allowed explicitly so the shop can be
 # recommended in AI search answers (ChatGPT, Claude, Perplexity, Gemini, Apple).
@@ -19,5 +21,6 @@ User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: CCBot
 Allow: /
+Disallow: /api/
 
 Sitemap: https://bashies.co.za/sitemap.xml

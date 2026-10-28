@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { GOOGLE_WRITE_REVIEW_URL } from "@/lib/google";
 import {
   Form,
   FormControl,
@@ -513,6 +514,18 @@ const Contact = () => {
                 <ReviewCard key={review.id} review={review} />
               ))}
             </div>
+          </div>
+
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <Button asChild size="lg" className="font-raleway font-medium tracking-wide">
+              <a href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+                <Star className="h-4 w-4 fill-current" />
+                Write a Google review
+              </a>
+            </Button>
+            <a href="/reviews" className="font-raleway text-sm font-medium text-primary underline hover:no-underline">
+              See our latest Google reviews
+            </a>
           </div>
         </div>
       </div>
