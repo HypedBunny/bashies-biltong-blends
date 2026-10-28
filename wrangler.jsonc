@@ -17,5 +17,8 @@
     // than returning the home page with 200).
     "not_found_handling": "404-page"
   },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Required by `wrangler preview`, which builds PR previews. Empty because the
+  // assets settings above also apply to previews.
+  "previews": {}
 }
