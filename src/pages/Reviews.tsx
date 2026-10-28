@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SavedReviewCards } from "@/components/Contact";
 import { GOOGLE_MAPS_URL, GOOGLE_WRITE_REVIEW_URL } from "@/lib/google";
 
 // The Places API (New) fields that worker/index.ts asks Google for.
@@ -36,17 +37,13 @@ const Stars = ({ rating, className }: { rating: number; className: string }) => 
 
 const Reviews = () => {
   const [place, setPlace] = useState<GooglePlace | null>(null);
-  const [failed, setFailed] = useState(false);
 
   // Fetched in the browser, never during render, so the prerendered HTML matches.
   useEffect(() => {
     fetch("/api/reviews")
       .then((res) => (res.ok ? res.json() : Promise.reject(new Error(`HTTP ${res.status}`))))
       .then(setPlace)
-      .catch((error) => {
-        console.error("Could not load Google reviews:", error);
-        setFailed(true);
-      });
+      .catch((error) => console.error("Could not load Google reviews:", error));
   }, []);
 
   return (
@@ -92,26 +89,11 @@ const Reviews = () => {
               <img src="/images/google-maps-logo.svg" width={98} height={18} alt="Google Maps" className="h-[18px] w-auto" />
             </div>
 
-            {!place && !failed && (
-              <p className="font-raleway text-muted-foreground">Loading reviews...</p>
-            )}
-            {/* Also shown while GOOGLE_PLACES_API_KEY is not set, so keep it neutral. */}
-            {failed && (
-              <p className="font-raleway text-center">
-                <a
-                  href={GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-medium text-primary underline hover:no-underline"
-                >
-                  Read our reviews on Google Maps
-                </a>
-              </p>
-            )}
-
-            {place?.reviews && (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
-                {place.reviews.map((review) => (
+            {/* The saved reviews from the home page show until live ones load, and
+                stay if the GOOGLE_PLACES_API_KEY secret is not set or Google fails. */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+              {place?.reviews ? (
+                place.reviews.map((review) => (
                   <Card key={review.googleMapsUri} className="border-border shadow-sm">
                     <CardContent className="p-4 sm:p-5 lg:p-6 space-y-3">
                       {/* Google requires the author's photo, name and a link to their profile. */}
@@ -155,22 +137,22 @@ const Reviews = () => {
                       </a>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-            )}
+                ))
+              ) : (
+                <SavedReviewCards />
+              )}
+            </div>
 
-            {place && (
-              <div className="mt-6 sm:mt-8 text-center">
-                <a
-                  href={place.googleMapsUri ?? GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-raleway text-sm font-medium text-primary underline hover:no-underline"
-                >
-                  Read all our reviews on Google Maps
-                </a>
-              </div>
-            )}
+            <div className="mt-6 sm:mt-8 text-center">
+              <a
+                href={place?.googleMapsUri ?? GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-raleway text-sm font-medium text-primary underline hover:no-underline"
+              >
+                Read all our reviews on Google Maps
+              </a>
+            </div>
           </section>
         </div>
       </main>
