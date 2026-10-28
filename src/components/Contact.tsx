@@ -138,6 +138,16 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
   </Card>
 );
 
+// One card per saved review above. Also used by the /reviews page until live
+// Google reviews load (src/pages/Reviews.tsx).
+export const SavedReviewCards = () => (
+  <>
+    {reviews.map((review) => (
+      <ReviewCard key={review.id} review={review} />
+    ))}
+  </>
+);
+
 const Contact = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -510,22 +520,17 @@ const Contact = () => {
 
             {/* Desktop Grid */}
             <div className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
-              {reviews.map((review) => (
-                <ReviewCard key={review.id} review={review} />
-              ))}
+              <SavedReviewCards />
             </div>
           </div>
 
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <div className="mt-8 sm:mt-10 text-center">
             <Button asChild size="lg" className="font-raleway font-medium tracking-wide">
               <a href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
                 <Star className="h-4 w-4 fill-current" />
                 Write a Google review
               </a>
             </Button>
-            <a href="/reviews" className="font-raleway text-sm font-medium text-primary underline hover:no-underline">
-              See our latest Google reviews
-            </a>
           </div>
         </div>
       </div>
