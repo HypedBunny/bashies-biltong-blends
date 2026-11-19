@@ -1,0 +1,53 @@
+# Seam's setup file. Committing it lets Seam's job run inside this repository.
+# The job reads the code and changes nothing. To remove Seam, delete this file.
+name: seam
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "23 */4 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+# One conductor at a time: a second start waits for the first.
+concurrency:
+  group: seam
+  cancel-in-progress: false
+
+env:
+  SEAM_PLANE: "https://seam-control.happyevents.workers.dev"
+  SEAM_PAIRING: "lJ9US534I3eMYLYxZKtnuKV7Z9GEXvstXNwK11EvcTY"
+  SEAM_SYSTEM: "temp"
+  SEAM_MONTHLY_BUDGET_USD: "40"
+
+jobs:
+  # The conductor reads the code and tells Seam what it found.
+  conductor:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    container:
+      image: "ghcr.io/hypedbunny/seam-runner@sha256:f9d2e09faae44cf27329e4a92c173da7c87e42c8f08e8a8c6e381434a4e791e8"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python -I -m runner quick-check --code "$GITHUB_WORKSPACE"
+        working-directory: ${{ runner.temp }}
+        env:
+          PYTHONSAFEPATH: "1"
+
+  # The check run looks at a proposed change. It starts with the stage Changes.
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - run: echo "Nothing to check yet."
