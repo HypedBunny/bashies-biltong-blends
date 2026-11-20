@@ -1,5 +1,7 @@
 # Seam's setup file. Committing it lets Seam's job run inside this repository.
-# The job reads the code and changes nothing. To remove Seam, delete this file.
+# The job reads the code and changes none of it. It writes one thing: Seam's own record, on
+# the branch "seam-record" (or the one that seam.yml names), which holds no code.
+# To remove Seam, delete this file. Delete that branch too if you do not want the record.
 name: seam
 
 on:
@@ -21,26 +23,42 @@ env:
   SEAM_PAIRING: "lJ9US534I3eMYLYxZKtnuKV7Z9GEXvstXNwK11EvcTY"
   SEAM_SYSTEM: "temp"
   SEAM_MONTHLY_BUDGET_USD: "40"
+  SEAM_SETUP: "3"
 
 jobs:
-  # The conductor reads the code and tells Seam what it found.
+  # The conductor reads the code, tells Seam what it found, and saves Seam's record. For the
+  # safety net it starts a copy of your system with made-up data in Seam's work box, on this
+  # machine's container service: that copy gets no secret of this file and no way out but Seam's
+  # proxy, which lets it reach only the hosts that seam.yml names.
   conductor:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 240
     permissions:
-      contents: read
+      # "write" is the least that lets a job push a branch: the host has no permission for
+      # one branch alone. This token could push to any branch that no rule here protects.
+      # Seam's runner pushes to the record branch only, and the token goes to that step
+      # alone. The host refuses a change to a workflow file made with it, this file too.
+      contents: write
       id-token: write
     container:
-      image: "ghcr.io/hypedbunny/seam-runner@sha256:f9d2e09faae44cf27329e4a92c173da7c87e42c8f08e8a8c6e381434a4e791e8"
+      image: "ghcr.io/hypedbunny/seam-runner@sha256:7cc542894aef4f8cda508b3271e3e23fd610ece41c0eb39e32788b5f7fda1a90"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - run: python -I -m runner quick-check --code "$GITHUB_WORKSPACE"
+      - run: |
+          status=0
+          python -I -m runner check-up --code "$GITHUB_WORKSPACE" || status=1
+          python -I -m runner safety-net --code "$GITHUB_WORKSPACE" || status=1
+          python -I -m runner plan --code "$GITHUB_WORKSPACE" || status=1
+          exit "$status"
         working-directory: ${{ runner.temp }}
         env:
           PYTHONSAFEPATH: "1"
+          # The job's own token: for the push of the record branch, and nothing else.
+          SEAM_RECORD_TOKEN: ${{ github.token }}
+          ANTHROPIC_API_KEY: ${{ secrets.SEAM_AI_KEY }}
 
   # The check run looks at a proposed change. It starts with the stage Changes.
   check:
